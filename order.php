@@ -55,6 +55,7 @@
                 if ( !isset($nameError)&&!isset($surnameError)&&!isset($emailError)&&!isset($emailError)&&!isset($addressError)&&!isset($postCodeError)&&!isset($contactNumberError) ) {
                     header("Location: sraka.php?order_id=".$_GET['cart_id']);
                 }
+                # CHANGE THIS!
             }
             $connection->close();
         }
