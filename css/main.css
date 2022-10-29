@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Serif+Display&display=swap');
+
+* {
+    font-family: 'Cormorant', serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: white;
+}
+
+input[type="text"],input[type="password"] {
+    font-size: 20px;
+    width: 100%;
+    height: 25px;
+    border: none;
+    border-bottom: 2px solid rgb(160, 160, 160);
+    text-align: center;
+}
+input[type="text"]:focus,input[type="password"]:focus {
+    outline: none;
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
+hr {
+    border: 1px solid black;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+h1,h2,h3,h4,h5 {
+    font-family: 'DM Serif Display', serif;
+}
+
+h3 {
+    font-size: 30px;
+    font-weight: normal;
+}
+
+h1 {
+    font-weight: normal;
+    font-size: 40px;
+    transition: .2s;
+}
+h2 {
+    font-weight: normal;
+    font-size: 40px;
+}
+
+input[type='submit'] {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    font-size: 30px;
+    margin-top: 20px;
+}
+input[type='submit']:hover {
+    cursor: pointer;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    transition: .2s;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.off {
+    color: rgba(126,126,126);
+    pointer-events: none;
+}
+
+.cover {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    z-index: 170;
+    opacity: 0;
+    transition: .3s;
+    pointer-events: none;
+}
+
+/*================================= HAMBURGER MENU */
+.hamburger-container {
+    display: grid;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    height: 30px;
+    transition: .2s;
+    z-index: 200;
+}
+.hamburger-container:hover {
+    cursor: pointer;
+}
+.hamburger-icon,#hamburger-checkbox {
+    grid-column: 1;
+    grid-row: 1;
+    height: 30px;
+    width: auto;
+}
+.hamburger-icon {
+    z-index: 190;
+}
+#hamburger-checkbox{
+    z-index: 200;
+    opacity: 0;
+}
+/*================================================*/
+
+.small h1 {
+    font-size: 30px;
+}
+header.small {
+    height: 45px;
+}
+.hamburger-container.small {
+    top: 8px;
+    right: 10px;
+}
+
+/*========================================= MENU */
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 10px 10px 30px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    min-height: 100vh;
+    width: 70%;
+    background-color: white;
+    z-index: 180;
+    transition: .3s;
+}
+.menu-container.hidden {
+    right: -100%;
+}
+
+.menu-container form {
+    margin-bottom: 100px;
+}
+
+.menu-bold {
+    font-weight: bold;
+    font-size: 30px;
+}
+.menu-bold.small {
+    font-size: 18px;
+}
+a.menu-bold {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+
+.menu-header {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    margin-top: 7px;
+    font-size: 20px;
+}
+.menu-options label {
+    margin-bottom: 10px;
+}
+
+.dropdown-container {
+    display: grid;
+    height: 34px;
+    width: auto;
+}
+.dropdown-icon, .dropdown-checkbox {
+    grid-column: 1;
+    grid-row: 1;
+    height: 34px;
+    width: auto;
+}
+.dropdown-icon.small, .dropdown-checkbox.small {
+    height: 18px;
+}
+.dropdown-icon {
+    pointer-events: none;
+}
+.dropdown-checkbox {
+    opacity: 0;
+}
+.dropdown-checkbox:hover {
+    cursor: pointer;
+}
+.dropdown-checkbox:checked ~ img {
+    transform: rotate(180deg);
+}
+
+.dropdown-content.hidden {
+    display: none;
+}
+
+
+/*===============================================*/
+
+/*========================================= PRODUCT */
+.product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70vw;
+    max-width: 300px;
+    margin-bottom: 50px;
+}
+.product-description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.product-title {
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.product-category {
+    font-size: 15px;
+    font-style: italic;
+    color: rgb(50,50,50);
+}
+.product-price {
+    font-size: 25px;
+}
+.product-img {
+    height: 70vw;
+    width: 70vw;
+
+    max-width: 300px;
+    max-height: 300px;
+
+    object-fit: cover;
+}
+/*==================================================*/
+
+.cart-btn {
+    background-color: rgba(0,0,0,0);
+    border: none;
+    margin-top: 10px;
+    transition: .1s;
+    
+}
+.cart-btn.display {
+    margin-left: auto;
+}
+.cart-btn:active {
+    transform: scale(0.9);
+}
+.cart-btn img {
+    height: 30px;
+}
+
+.btn {
+    transition: .2s;
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+.btn:hover {
+    transition: .2s;
+    cursor: pointer;
+}
+
+.big-btn {
+    /* height: 50px; */
+    padding: 20px 10px 20px 10px;
+    min-width: 50vw;
+    max-width: 300px;
+    background-color: #000;
+    color: #fff;
+    font-size: 18px;
+    font-family: 'DM Serif Display', serif;
+    border: none;
+
+    transition: .2s;
+}
+.big-btn:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+
+    transition: .1s;
+}
+.big-btn:active {
+    transform: scale(0.95);
+
+    transition: .1s;
+}
+
+input[type='submit'].big-btn {
+    background-color: #000;
+    font-size: 18px;
+    text-align: center;
+    min-width: 50vw;
+    max-width: 300px;
+}
+input[type='submit'].big-btn:hover {
+    transform: scale(1.01);
+    cursor: pointer;
+
+    transition: .1s;
+}
+input[type='submit'].big-btn:active {
+    transform: scale(0.95);
+
+    transition: .1s;
+}

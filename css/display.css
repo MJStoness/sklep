@@ -1,0 +1,33 @@
+.main-img {
+    height: 80vw;
+    width: 80vw;
+    object-fit: cover;
+}
+
+.display-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 80vw;
+}
+
+.display-title {
+    font-size: 45px;
+    font-weight: 500;
+    margin-right: 20px;
+}
+
+.display-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.display-price {
+    font-size: 35px;
+    font-weight: 400;
+}
+
+.display-desc {
+    margin-top: 20px;
+    font-size: 25px;
+}

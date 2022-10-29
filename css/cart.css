@@ -1,0 +1,139 @@
+a {
+    display: inherit;
+}
+
+hr {
+    width: 90vw;
+
+}
+
+.cart-entry {
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    justify-content: flex-start;
+    width: 90vw;
+    padding: 7px;
+    margin-bottom: 20px;
+}
+
+.cart-entry-container {
+    overflow-y: scroll;
+    max-height: 55vh;
+}
+
+.cart-img {
+    height: 70px;
+    width: 70px;
+
+    object-fit: cover;
+
+    margin-right: 15px;
+}
+
+.cart-entry-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.cart-entry-price {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.cart-entry-quantity {
+    margin-left: auto;
+    margin-right: 10px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cart-entry-quantity input[type='number'] {
+    transform: translateY(5px);
+    padding-bottom: 10px;
+    height: 20px;
+    width: 40px;
+    font-size: 30px;
+    text-align: center;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    -moz-appearance: textfield;
+}
+.cart-entry-quantity input[type='number']:focus {
+    outline: none;
+}
+
+.cart-entry-quantity-up, .cart-entry-quantity-down {
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+.cart-entry-quantity-up:hover, .cart-entry-quantity-down:hover {
+    cursor: pointer;
+}
+.cart-entry-quantity-up img, .cart-entry-quantity-down img {
+    height: 30px;
+    width: auto;
+}
+.cart-entry-quantity-up img {
+    transform: rotate(180deg);
+    margin-bottom: -15px;
+}
+
+.delete-form {
+    display: grid;
+}
+.delete-form input {
+    margin: 0;
+    height: 30px;
+    margin-top: 20px;
+    width: 20px;
+    grid-column: 1;
+    grid-row: 1;
+}
+.delete-form input:hover {
+    cursor: pointer;
+}
+.delete-form img {
+    margin-top: 20px;
+    margin-left: -5px;
+    grid-column: 1;
+    grid-row: 1;
+    height: 30px;
+    width: auto;
+    pointer-events: none;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 90vw;
+}
+.cart-summary p {
+    font-family: 'DM Serif Display', serif;
+    font-size: 30px;
+}
+
+.cart-summary .small-title {
+    font-size: 20px;
+    letter-spacing: 3px;
+}
+
+#recalculate {
+    margin-top: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.order-container {
+    padding: 20px;
+}
+
