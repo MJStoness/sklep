@@ -53,7 +53,13 @@
                 else if ( !preg_match($number_reg, $_POST['contactNumber']) ) $contactNumberError = 'Nieprawidłowy numer telefonu!';
 
                 if ( !isset($nameError)&&!isset($surnameError)&&!isset($emailError)&&!isset($emailError)&&!isset($addressError)&&!isset($postCodeError)&&!isset($contactNumberError) ) {
-                    header("Location: sraka.php?order_id=".$_GET['cart_id']);
+                    //header("Location: sraka.php?order_id=".$_GET['cart_id']);
+                    //hea
+                    $query = "DELETE FROM cart_entry WHERE cart_id=".$_GET['cart_id'];
+                    if ( $response = $connection->query($query) ) {
+                        throw new Exception();
+                    }
+
                 }
                 # CHANGE THIS!
             }
