@@ -37,7 +37,8 @@ hr {
 
 .cart-entry-price {
     font-size: 20px;
-    font-weight: 600;
+    font-family: var(--num-font);
+    font-weight: 200;
 }
 
 .cart-entry-quantity {
@@ -56,10 +57,11 @@ input::-webkit-inner-spin-button {
 }
 .cart-entry-quantity input[type='number'] {
     transform: translateY(5px);
-    padding-bottom: 10px;
     height: 20px;
     width: 40px;
-    font-size: 30px;
+    font-size: 18px;
+    font-family: var(--num-font);
+    font-weight: 200;
     text-align: center;
     background-color: rgba(0,0,0,0);
     border: none;
@@ -120,6 +122,10 @@ input::-webkit-inner-spin-button {
 .cart-summary p {
     font-family: 'DM Serif Display', serif;
     font-size: 30px;
+}
+.cart-summary-price {
+    font-family: var(--num-font) !important; 
+    font-weight: 1000 !important;
 }
 
 .cart-summary .small-title {

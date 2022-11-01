@@ -9,6 +9,7 @@
     align-items: center;
     width: 90vw;
     margin-top: 20px;
+    margin-bottom: 45px;
 }
 .order-form-container hr {
     margin-top: 5px;
@@ -55,4 +56,45 @@ tr.error td {
     text-align: center;
     max-width: 90vw;
     height: 20px;
+}
+
+.order-entry-summary, .order-entry {
+    width: 70vw;
+    padding: 7px;
+}
+
+.order-entry {
+    background-color: rgb(240, 240, 240);
+    display: flex;    
+    margin-bottom: 10px;
+}
+.order-entry h5 {
+    margin-right: 20px;
+}
+
+.order-entry-quantity {
+    font-family: var(--num-font);
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.order-entry-price {
+    margin-left: auto;
+}
+.order-entry-price span {
+    font-family: var(--num-font);
+    font-size: 15px;
+}
+
+.order-entry-summary {
+    display: flex;
+    justify-content: flex-end;
+}
+.order-entry-summary span {
+    font-family: var(--num-font);
+    font-size: 15px;
+    font-weight: 500 !important;
+}
+.order-entry-summary p {
+    font-weight: bold;
 }

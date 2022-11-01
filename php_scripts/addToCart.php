@@ -28,7 +28,7 @@
             //=====================================================================
 
             $query = "SELECT cart_id FROM cart WHERE guest=".$_SESSION['guest'];
-            if ( $response = @$connection->query($query) ) {
+            if ( $response = $connection->query($query) ) {
                 $cartId = $response->fetch_assoc()['cart_id'];
             }
 

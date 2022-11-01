@@ -4,18 +4,6 @@
     $passwd = "";
     $dbname = "sklep";
 
-    /* $tablica = array();
-
-    $query = "SIKI * KUPA `sranie`";
-    $response = $connection->query($query);
-
-    $i=0;
-    while ( $row = $response->fetch_assoc() ) {
-        $tablica[$i] = $row;
-        $i++;
-    } */
-
-
     function colToString(array $arr, mixed $col, string $separator) {
         $toString = array();
         foreach ($arr as $el) {
@@ -50,7 +38,7 @@
     function cartSum(array $cartEntires) {
         $sum = 0;
         foreach( $cartEntires as $cartEntire ) {
-            $sum += $cartEntire['price']*$cartEntire['quantity'];
+            $sum += floatval($cartEntire['price'])*intval($cartEntire['quantity']);
         }
         return number_format($sum, 2, '.', '');
     }

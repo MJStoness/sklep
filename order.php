@@ -1,7 +1,9 @@
 <?php
     session_start();
 
-    if ( !isset($_GET['cart_id']) ) header("Location: cart.php");
+    if ( !isset($_POST['token']) ) {
+        header("Location: cart.php");
+    }
 
     require_once "config.php";
 
@@ -17,7 +19,7 @@
             $orderEntries = array();
             $images = array();
             
-            $query = "SELECT cart_entry_id,cart_id,product.product_id,quantity,price,name FROM `cart_entry` JOIN product on ( cart_entry.product_id = product.product_id ) WHERE cart_id=".$_GET['cart_id'];
+            $query = "SELECT cart_entry_id,cart_entry.cart_id,product.product_id,quantity,price,name,cart.guest,cart.user_id FROM `cart_entry` JOIN product on ( cart_entry.product_id = product.product_id ) JOIN cart on ( cart.cart_id = cart_entry.cart_id ) WHERE cart_entry.cart_id=".$_GET['cart_id'];
             if ( $response = $connection->query($query) ) {
                 fetchAllToArray($orderEntries, $response);
                 $response->free();
@@ -52,16 +54,71 @@
                 if ( empty($_POST['contactNumber']) ) $contactNumberError = EMPTY_FIELD_ERROR;
                 else if ( !preg_match($number_reg, $_POST['contactNumber']) ) $contactNumberError = 'Nieprawidłowy numer telefonu!';
 
-                if ( !isset($nameError)&&!isset($surnameError)&&!isset($emailError)&&!isset($emailError)&&!isset($addressError)&&!isset($postCodeError)&&!isset($contactNumberError) ) {
-                    //header("Location: sraka.php?order_id=".$_GET['cart_id']);
-                    //hea
-                    $query = "DELETE FROM cart_entry WHERE cart_id=".$_GET['cart_id'];
-                    if ( $response = $connection->query($query) ) {
-                        throw new Exception();
+                # CHANGE THIS SHIIIT ASAP AGILE \/ \/ \/ \/ \/ !
+                if ( !isset($nameError)&&!isset($surnameError)&&!isset($emailError)&&!isset($emailError)&&!isset($addressError)&&!isset($postCodeError)&&!isset($contactNumberError) )  {
+
+                    // ================================================================================================ ORDER CREATION
+                    if ( isset($_SESSION['loggedin_id']) ) {
+                        $query = "INSERT INTO order_overview (`user_id`, `email`, a`ddress`, `name`, `surname`, `contact_number`) VALUES (
+                            ".$_SESSION['loggedin_id'].", 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['address'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['name'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['surname'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['contactNumber'], ENT_QUOTES, "UTF-8"))."')";
+
+                        if ( !$connection->query($query) ) {
+                            throw new Exception();
+                        }
+
+                        // ====================================================================== FINDING ORDER ID
+                        $query = "SELECT order_id FROM order_overview WHERE iser_id=".$_SESSION['loggedin_id'];
+                        if ( $response = $connection->query($query) ) {
+                            $orderId = $response->fetch_assoc()['order_id'];
+                        } else {
+                            throw new Exception();
+                        }
+                        // ===============================================================================================
+                    } else {
+                        $query = "INSERT INTO order_overview (`guest`, `email`, `address`, `name`, `surname`, `contact_number`) VALUES (
+                            '".$_SESSION['guest']."', 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['address'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['name'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['surname'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities($_POST['contactNumber'], ENT_QUOTES, "UTF-8"))."')";
+
+                        if ( !$connection->query($query) ) {
+                            throw new Exception();
+                        }
+
+                        // ====================================================================== FINDING ORDER ID
+                        $query = "SELECT order_id FROM order_overview WHERE guest=".$_SESSION['guest'];
+                        if ( $response = $connection->query($query) ) {
+                            $orderId = $response->fetch_assoc()['order_id'];
+                        } else {
+                            throw new Exception();
+                        }
+                        // ===============================================================================================
+                    }
+                    // ===================================================================================================================
+                    
+                    foreach ( $orderEntries as $orderEntry ) {
+                        $query = "INSERT INTO order_entry (order_id, product_id, quantity) VALUE (".$orderId.", ".$orderEntry['product_id'].", ".$orderEntry['quantity'].")";
+                        if ( !$connection->query($query) ) {
+                            throw new Exception();
+                        }
                     }
 
+                    $query = "DELETE FROM cart_entry WHERE cart_id=".$_GET['cart_id'];
+                    if ( !$connection->query($query) ) {
+                        throw new Exception();
+                    }
+                    
+                    $connection->close();
+                    header("Location: orderFinal.php?order_id=".$orderId);
                 }
-                # CHANGE THIS!
+                
             }
             $connection->close();
         }
@@ -105,7 +162,7 @@
         <h3>ZAMÓWIENIE</h3>
 
         <section class='order-form-container'>
-            <form method='POST'>
+            <form method='POST' action='#'>
                 <table>
                     <tr>
                         <td class='label'>
@@ -230,9 +287,24 @@
                     </div>
                 </div>
                 <div class="menu-options dropdown-content hidden">
+                    <?php
+                        echo "<a href='cart.php'>";
+                        foreach ( $orderEntries as $orderEntry ) {
+                            echo 
+                                "<section class='order-entry'>
+                                    <p class='order-entry-quantity'>".$orderEntry['quantity']."</p><h5>".$orderEntry['name']."</h5><p class='order-entry-price'><span>".number_format( (floatval($orderEntry['price'])*intval($orderEntry['quantity'])), 2, '.', '' )."</span> zł</p>
+                                </section>";
+                        }
+
+                        echo 
+                            "<section class='order-entry-summary'>
+                                <p>Suma: <span>".cartSum($orderEntries)."</span> zł</p>
+                            </section></a>"
+                    ?>
                     
                 </div>
                 <input type='submit' value='ZAMIAWIAM I PŁACĘ' class='big-btn' name='submit'>
+                <input type='hidden' name='token' value='true'>
             </form>
             
         </section>
@@ -242,5 +314,5 @@
 </body>
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
-<script src="scripts/quantityControll.js"></script>
+<script src="scripts/createToken.js"></script>
 </html>

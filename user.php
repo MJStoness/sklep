@@ -2,7 +2,7 @@
 
     session_start();
 
-    if ( !isset($_SESSION['loggedin']) ) header("Location: login.php");
+    if ( !isset($_SESSION['loggedin_id']) ) header("Location: login.php");
     function zmiana() {
         if ( isset($_GET['zmiana']) ) return true;
         else return false;

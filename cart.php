@@ -15,7 +15,7 @@
             $cartEntries = array();
             $images = array();
 
-            if ( isset($_SESSION['loggedIn']) ) {
+            if ( isset($_SESSION['loggedin_id']) ) {
                 echo "LOGGEDIN CART";
             }
             if ( isset($_SESSION['guest']) ) {
@@ -134,14 +134,15 @@
                 echo 
                     "
                     <section class='cart-summary'>
-                        <p class='small-title'>Suma: </p><p>".cartSum($cartEntries)." zł</p>
+                        <p class='small-title'>Suma: </p><p><span class='cart-summary-price'>".cartSum($cartEntries)."</span> zł</p>
                         <hr>
                         <button class='off btn' id='recalculate'>PRZELICZ</button>
                     </section>
                     <section class='order-container'>
-                        <a href='order.php?cart_id=".$cartId."'>
-                            <button class='big-btn'>ZŁÓŻ ZAMÓWIENIE</button>
-                        </a>
+                        <form method='POST' action='order.php?cart_id=".$cartId."'>
+                            <input type='submit' value='ZŁÓŻ ZAMÓWIENIE' class='big-btn'>
+                            <input type='hidden' name='token' value='true'>
+                        </form>
                     </section>";
             }
 
@@ -156,4 +157,5 @@
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
 <script src="scripts/quantityControll.js"></script>
+<script src="scripts/createToken.js"></script>
 </html>
