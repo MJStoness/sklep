@@ -4,6 +4,8 @@
     $passwd = "";
     $dbname = "sklep";
 
+    define('EMPTY_FIELD_ERROR', 'Pole jest puste!');
+
     function colToString(array $arr, mixed $col, string $separator) {
         $toString = array();
         foreach ($arr as $el) {
@@ -42,3 +44,20 @@
         }
         return number_format($sum, 2, '.', '');
     }
+
+    function generateCode() {
+        $chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVZYabcdefghijklmnopqrstuvwxyz';
+        $code = substr(str_shuffle($chars), 0, 10);
+        return $code;
+    }
+
+    function generateIdentifier($connection, string $table) {
+        do {
+            $identifier = generateCode();
+            $query = "SELECT indentifier FROM $table WHERE identifier = $identifier";
+            $result = $connection->query($query);
+        } while ($result);
+
+        return $identifier;
+    }
+      

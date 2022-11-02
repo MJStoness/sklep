@@ -1,9 +1,10 @@
 main {
-    margin-top: 200px;
+    margin-top: 150px;
 }
 
-input[type="submit"] {
-    font-size: 40px;
+input.big-btn {
+    font-size: 20px !important;
+    width: 60vw !important;
 }
 
 a {
@@ -22,4 +23,9 @@ a {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    width: min(400px, 60vw);
+}
+
+p.error {
+    font-size: 20px;
 }

@@ -45,11 +45,6 @@
     width: 100%;
 }
 
-p.error {
-    color: red;
-    font-size: 15px;
-    font-style: italic;
-}
 tr.error td {
     padding-left: 90px;
     padding-bottom: 20px;

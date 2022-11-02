@@ -59,7 +59,7 @@
         }
 
     } catch ( Exception $e ) {
-        echo "GÓWNO SIKI";
+        echo "SRAKA";
     }
     
 

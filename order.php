@@ -29,10 +29,9 @@
 
             if ( isset($_POST['submit']) ) {
 
-                define('EMPTY_FIELD_ERROR', 'Pole jest puste!');
                 $number_reg = "/^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$/";
                 $postCode_reg = "/^[0-9]{2}-[0-9]{3}$/";
-                $address_reg = "/^(?:[A-Za-z ,.-]+)(?:[0-9]+)$/";
+                $address_reg = "/^(?:[A-Za-z ,.-ĄĘĆŻŹŁąęćżźł]+)(?:[0-9]+)$/";
                 $surname_reg = "/^[A-Za-z-ĄĘĆŻŹŁąęćżźł ]*$/";
                 $name_reg = "/^[A-Za-zĄĘĆŻŹŁąęćżźł]*$/";
                 
@@ -57,52 +56,42 @@
                 # CHANGE THIS SHIIIT ASAP AGILE \/ \/ \/ \/ \/ !
                 if ( !isset($nameError)&&!isset($surnameError)&&!isset($emailError)&&!isset($emailError)&&!isset($addressError)&&!isset($postCodeError)&&!isset($contactNumberError) )  {
 
-                    // ================================================================================================ ORDER CREATION
+                    // ================================================================================================ ORDER CREATION\
+                    $identifier = generateIdentifier($connection, 'order_overview');
                     if ( isset($_SESSION['loggedin_id']) ) {
-                        $query = "INSERT INTO order_overview (`user_id`, `email`, a`ddress`, `name`, `surname`, `contact_number`) VALUES (
-                            ".$_SESSION['loggedin_id'].", 
+                        $query = "INSERT INTO order_overview (`user_id`, `identifier` `email`, a`ddress`, `name`, `surname`, `contact_number`) VALUES (
+                            ".$_SESSION['loggedin_id'].",
+                            '".$identifier."', 
                             '".mysqli_real_escape_string($connection, htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"))."', 
                             '".mysqli_real_escape_string($connection, htmlentities($_POST['address'], ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['name'], ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['surname'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities(ucfirst($_POST['name']), ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities(ucwords($_POST['surname']), ENT_QUOTES, "UTF-8"))."', 
                             '".mysqli_real_escape_string($connection, htmlentities($_POST['contactNumber'], ENT_QUOTES, "UTF-8"))."')";
 
                         if ( !$connection->query($query) ) {
                             throw new Exception();
                         }
-
-                        // ====================================================================== FINDING ORDER ID
-                        $query = "SELECT order_id FROM order_overview WHERE iser_id=".$_SESSION['loggedin_id'];
-                        if ( $response = $connection->query($query) ) {
-                            $orderId = $response->fetch_assoc()['order_id'];
-                        } else {
-                            throw new Exception();
-                        }
-                        // ===============================================================================================
                     } else {
-                        $query = "INSERT INTO order_overview (`guest`, `email`, `address`, `name`, `surname`, `contact_number`) VALUES (
-                            '".$_SESSION['guest']."', 
+                        $query = "INSERT INTO order_overview (`identifier`, `email`, `address`, `name`, `surname`, `contact_number`) VALUES (
+                            '".$identifier."', 
                             '".mysqli_real_escape_string($connection, htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"))."', 
                             '".mysqli_real_escape_string($connection, htmlentities($_POST['address'], ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['name'], ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['surname'], ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities(ucfirst($_POST['name']), ENT_QUOTES, "UTF-8"))."', 
+                            '".mysqli_real_escape_string($connection, htmlentities(ucwords($_POST['surname']), ENT_QUOTES, "UTF-8"))."', 
                             '".mysqli_real_escape_string($connection, htmlentities($_POST['contactNumber'], ENT_QUOTES, "UTF-8"))."')";
 
                         if ( !$connection->query($query) ) {
                             throw new Exception();
                         }
-
-                        // ====================================================================== FINDING ORDER ID
-                        $query = "SELECT order_id FROM order_overview WHERE guest=".$_SESSION['guest'];
-                        if ( $response = $connection->query($query) ) {
-                            $orderId = $response->fetch_assoc()['order_id'];
-                        } else {
-                            throw new Exception();
-                        }
-                        // ===============================================================================================
                     }
                     // ===================================================================================================================
                     
+                    $query = "SELECT order_id FROM order_overview WHERE identifier='".$identifier."'";
+                    if ( $response = $connection->query($query) ) {
+                        $orderId = $response->fetch_assoc()['order_id'];
+                    }
+                    echo $orderId;
+
                     foreach ( $orderEntries as $orderEntry ) {
                         $query = "INSERT INTO order_entry (order_id, product_id, quantity) VALUE (".$orderId.", ".$orderEntry['product_id'].", ".$orderEntry['quantity'].")";
                         if ( !$connection->query($query) ) {
