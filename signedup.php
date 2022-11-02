@@ -1,29 +1,3 @@
-<?php
-    session_start();
-
-    /* if ( !isset($_POST['token']) ) {
-        header("Location: cart.php");
-    } */
-
-    require_once "config.php";
-
-    mysqli_report(MYSQLI_REPORT_STRICT);
-    error_reporting(0);
-
-    try {
-        $connection = new mysqli($servername,$username,$passwd,$dbname);
-        
-        if ( $connection->connect_errno ) {
-            throw new Exception();
-        } else {
-            
-        }
-    } catch ( Exception $e ) {
-        echo "SRAKA";
-    }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +29,13 @@
 
     <main>
 
-        <h3>ZAMÓWIENIE ZOSTAŁO ZŁOŻONE</h3>
+        <br><br><br>
+
+        <h3>REJESTRACJA PRZEBIEGŁA POMYŚLNIE!</h3>
+
+        <br><br><br><br><br><br><br><br><br>
+            
+        <a href="login.php" class='a-btn'>Zaloguj się</a>
     
     </main>
 

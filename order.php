@@ -150,124 +150,92 @@
 
         <h3>ZAMÓWIENIE</h3>
 
-        <section class='order-form-container'>
+        <section class='standard-form-container'>
             <form method='POST' action='#'>
-                <table>
-                    <tr>
-                        <td class='label'>
-                            <p>Imie: </p>
-                        </td>
-                        <td class='input'>
-                            <input type='text' name='name' 
-                                <?php
-                                    if ( isset($_POST['name']) ) echo "value='".$_POST['name']."'";
-                                ?>
-                            >
-                        </td>
-                    </tr>
-                    <tr class='error'><td colspan='2'><p class='error'>
-                        <?php
-                            if ( isset($nameError) ) echo $nameError;
-                            else echo '&nbsp;'
-                        ?>
-                    </p></td></tr>
-                    <tr>
-                        <td class='label'>
-                            <p>Nazwisko: </p>
-                        </td>
-                        <td class='input'>
-                            <input type='text' name='surname'
-                                <?php
-                                    if ( isset($_POST['surname']) ) echo "value='".$_POST['surname']."'";
-                                ?>
-                            >
-                        </td>
-                    </tr>
-                    <tr class='error'><td colspan='2'><p class='error'>
-                        <?php
-                            if ( isset($surnameError) ) echo $surnameError;
-                            else echo '&nbsp;'
-                        ?>
-                    </p></td></tr>
-                    <tr>
-                        <td class='label'>
-                            <p>Email: </p>
-                        </td>
-                        <td class='input'>
-                            <input type='text' name='email'
-                                <?php
-                                    if ( isset($_POST['email']) ) echo "value='".$_POST['email']."'";
-                                ?>
-                            >
-                        </td>
-                    </tr>
-                    <tr class='error'><td colspan='2'><p class='error'>
-                        <?php
-                            if ( isset($emailError) ) echo $emailError;
-                            else echo '&nbsp;'
-                        ?>
-                    </p></td></tr>
-                </table>
-                    <hr>
-                <table>
-                    <tr>
-                        <td  class='label'>
-                            <p>Adres: </p>
-                        </td>
-                        <td class='input'>
-                            <input type='text' name='address'
-                                <?php
-                                    if ( isset($_POST['address']) ) echo "value='".$_POST['address']."'";
-                                ?>
-                            >
-                        </td>
-                    </tr>
-                    <tr class='error'><td colspan='2'><p class='error'>
-                        <?php
-                            if ( isset($addressError) ) echo $addressError;
-                            else echo '&nbsp;'
-                        ?>
-                    </p></td></tr>
-                    <tr>
-                        <td  class='label'>
-                            <p>Kod pocztowy: </p>
-                        </td>
-                        <td class='input'>
-                            <input type='text' name='postCode'
-                                <?php
-                                    if ( isset($_POST['postCode']) ) echo "value='".$_POST['postCode']."'";
-                                ?>
-                            >
-                        </td>
-                    </tr>
-                    <tr class='error'><td colspan='2'><p class='error'>
-                        <?php
-                            if ( isset($postCodeError) ) echo $postCodeError;
-                            else echo '&nbsp;'
-                        ?>
-                    </p></td></tr>
-                </table>    
-                    <hr>
-                <table>
-                    <tr>
-                        <td class='label'>
-                            <p>Numer kontaktowy: </p>
-                        </td>
-                        <td class='input'>
-                            <input type='text' name='contactNumber'
-                                <?php
-                                    if ( isset($_POST['contactNumber']) ) echo "value='".$_POST['contactNumber']."'";
-                                ?>
-                            >
-                        </td>
-                    </tr>
-                    <tr class='error'><td colspan='2'><p class='error'>
-                        <?php
-                            if ( isset($contactNumberError) ) echo $contactNumberError;
-                            else echo '&nbsp;'
-                        ?>
-                    </p></td></tr>
-                </table>
+                <!-- ======================================================================================================== PERSONAL DATA -->
+                <label class='sans <?php if ( isset($nameError) ) echo 'error'; ?>' for='form-name' data-highlight='yes'>Imie: </label>
+                <input type='text' class='sans <?php if ( isset($nameError) ) echo 'error'; ?>' id='form-name' data-highlight='yes' name='name'
+                    <?php
+                        if ( isset($_POST['name']) ) echo "value='".$_POST['name']."'";
+                    ?>
+                >
+                <p class='error'>
+                    <?php
+                        if ( isset($nameError) ) echo $nameError;
+                        else echo '&nbsp;'
+                    ?>
+                </p>
+
+                <label class='sans <?php if ( isset($surnameError) ) echo 'error'; ?>' for='form-surname' data-highlight='yes'>Nazwisko: </label>
+                <input type='text' class='sans <?php if ( isset($surnameError) ) echo 'error'; ?>' id='form-surname' data-highlight='yes' name='surname'
+                    <?php
+                        if ( isset($_POST['surname']) ) echo "value='".$_POST['surname']."'";
+                    ?>
+                >
+                <p class='error'>
+                    <?php
+                        if ( isset($surnameError) ) echo $surnameError;
+                        else echo '&nbsp;'
+                    ?>
+                </p>
+
+                <label class='sans <?php if ( isset($emailError) ) echo 'error'; ?>' for='form-email' data-highlight='yes'>Email: </label>
+                <input type='text' class='sans <?php if ( isset($emailError) ) echo 'error'; ?>' id='form-email' data-highlight='yes' name='email'
+                    <?php
+                        if ( isset($_POST['email']) ) echo "value='".$_POST['email']."'";
+                    ?>
+                >
+                <p class='error'>
+                    <?php
+                        if ( isset($emailError) ) echo $emailError;
+                        else echo '&nbsp;'
+                    ?>
+                </p>
+                <!-- ===================================================================================================================== -->
+                <hr class='form-separator'>
+                <!-- ======================================================================================================== ADDRESS DATA -->
+                <label class='sans <?php if ( isset($addressError) ) echo 'error'; ?>' for='form-address' data-highlight='yes'>Adres: </label>
+                <input type='text' class='sans <?php if ( isset($addressError) ) echo 'error'; ?>' id='form-address' data-highlight='yes' name='address'
+                    <?php
+                        if ( isset($_POST['address']) ) echo "value='".$_POST['address']."'";
+                    ?>
+                >
+                <p class='error'>
+                    <?php
+                        if ( isset($addressError) ) echo $addressError;
+                        else echo '&nbsp;'
+                    ?>
+                </p>
+
+                <label class='sans <?php if ( isset($postCodeError) ) echo 'error'; ?>' for='form-postCode' data-highlight='yes'>Kod pocztowy: </label>
+                <input type='text' class='sans <?php if ( isset($postCodeError) ) echo 'error'; ?>' id='form-postCode' data-highlight='yes' name='postCode'
+                    <?php
+                        if ( isset($_POST['postCode']) ) echo "value='".$_POST['postCode']."'";
+                    ?>
+                >
+                <p class='error'>
+                    <?php
+                        if ( isset($postCodeError) ) echo $postCodeError;
+                        else echo '&nbsp;'
+                    ?>
+                </p>
+                <!-- ===================================================================================================================== -->
+                <hr class='form-separator'>
+                <!-- ======================================================================================================== CONTACT DATA -->
+                <label class='sans <?php if ( isset($contactNumberError) ) echo 'error'; ?>' for='form-contactNumber' data-highlight='yes'>Numer kontaktowy: </label>
+                <input type='text' class='sans <?php if ( isset($contactNumberError) ) echo 'error'; ?>' id='form-contactNumber' data-highlight='yes' name='contactNumber'
+                    <?php
+                        if ( isset($_POST['contactNumber']) ) echo "value='".$_POST['contactNumber']."'";
+                    ?>
+                >
+                <p class='error'>
+                    <?php
+                        if ( isset($contactNumberError) ) echo $contactNumberError;
+                        else echo '&nbsp;'
+                    ?>
+                </p>
+                <!-- ===================================================================================================================== -->
+
                 <div class="menu-header">
                     <label for="kategoria"><p class="menu-bold small">Pokaż Zamówienie:</p></label>
                     <div class="dropdown-container">
@@ -303,5 +271,5 @@
 </body>
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
-<script src="scripts/createToken.js"></script>
+<script src="scripts/highlight.js"></script>
 </html>

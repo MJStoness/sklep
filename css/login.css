@@ -1,14 +1,6 @@
-main {
-    margin-top: 150px;
-}
-
 input.big-btn {
     font-size: 20px !important;
     width: 60vw !important;
-}
-
-a {
-    font-size: 20px;
 }
 
 .label {
@@ -24,8 +16,4 @@ a {
     justify-content: center;
     margin-bottom: 20px;
     width: min(400px, 60vw);
-}
-
-p.error {
-    font-size: 20px;
 }

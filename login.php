@@ -1,3 +1,37 @@
+<?php
+
+    session_start();
+
+    require_once "config.php";
+
+    //mysqli_report(MYSQLI_REPORT_STRICT);
+    //error_reporting(0);
+
+    try {
+        $connection = new mysqli($servername,$username,$passwd,$dbname);
+        
+        if ( $connection->connect_errno ) {
+            throw new Exception();
+        } else {
+            if ( isset($_POST['submit']) ) {
+                if ( empty($_POST['login']) ) $loginError = EMPTY_FIELD_ERROR;
+                $response = $connection->query("SELECT * FROM user WHERE `login`='".$_POST['login']."' OR `email`='".$_POST['login']."'");
+                if ( !$userRow =$response->fetch_assoc() ) $loginError = 'Konto o podanym loginie lub emailu nie istnieje!';
+
+                if ( !password_verify($_POST['passwd'], $userRow['passwd']) ) $passwdError = 'Nieprawidłowe hasło!';
+
+                if ( !isset($loginError)&&!isset($passwdError) ) {
+                    $_SESSION['loggedin_id'] = $userRow['user_id'];
+                    header('Location: index.php');
+                }
+            }
+        }
+    } catch ( Exception $e ) {
+        echo "SRAKA";
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,14 +62,36 @@
 
     <main>
         <h2>Logowanie</h2>
-        <form class="login-container" action>
-            <p class="label">login / email</p>
-            <input type="text">
-            <p class="label">hasło</p>
-            <input type="password">
-            <input type="submit" value="zaloguj">
+        <form class="standard-form-container" method="POST">
+            <label class='sans <?php if ( isset($loginError) ) echo 'error'; ?>' for='form-login' data-highlight='yes'>Login lub email: </label>
+            <input type='text' class='sans <?php if ( isset($loginError) ) echo 'error'; ?>' id='form-login' data-highlight='yes' name='login'
+                <?php
+                    if ( isset($_POST['login']) ) echo "value='".$_POST['login']."'";
+                ?>
+            >
+            <p class='error'>
+                <?php
+                    if ( isset($loginError) ) echo $loginError;
+                    else echo '&nbsp;'
+                ?>
+            </p>
+            
+            <label class='sans <?php if ( isset($passwdError) ) echo 'error'; ?>' for='form-passwd' data-highlight='yes'>Hasło: </label>
+            <input type='password' class='sans <?php if ( isset($passwdError) ) echo 'error'; ?>' id='form-passwd' data-highlight='yes' name='passwd'
+                <?php
+                    if ( isset($_POST['passwd']) ) echo "value='".$_POST['passwd']."'";
+                ?>
+            >
+            <p class='error'>
+                <?php
+                    if ( isset($passwdError) ) echo $passwdError;
+                    else echo '&nbsp;'
+                ?>
+            </p>
+
+            <input type="submit" value="Zaloguj" name='submit' class='big-btn'>
         </form>
-        <a href="signup.php">Zarejestruj się</a>
+        <a href="signup.php" class='a-btn'>Zarejestruj się</a>
     </main>
 
 </body>

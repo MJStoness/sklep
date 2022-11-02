@@ -1,29 +1,116 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Serif+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
 
 * {
     font-family: 'Cormorant', serif;
     margin: 0;
     padding: 0;
     --num-font: 'Noto Serif JP', serif;
+    --main-sans-font: 'Noto Sans JP', sans-serif;
+    --main-serif-font: 'DM Serif Display', serif;
+    --mobile-width: 70vw;
+    --gray: rgba(160, 160, 160);
 }
 
 body {
     background-color: white;
 }
 
-input[type="text"],input[type="password"] {
+/* input[type="text"],input[type="password"] {
     font-size: 20px;
     width: 100%;
     height: 25px;
     border: none;
-    border-bottom: 2px solid rgb(160, 160, 160);
+    border-bottom: 2px solid var(--gray);
     text-align: center;
 }
 input[type="text"]:focus,input[type="password"]:focus {
     outline: none;
     border-bottom: 2px solid rgb(0, 0, 0);
+} */
+
+label[data-highlight="yes"] {
+    margin-right: auto;
+    color: rgb(73, 73, 73);
 }
+input[type="text"], input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: none;
+    border: 2px solid var(--gray);
+}
+input[type="text"]:focus,input[type="password"]:focus {
+    outline: none;
+    border: 2px solid rgb(0, 0, 0);
+}
+
+label.highlighted {
+    color:  rgb(0, 0, 0);
+}
+
+.form-separator {
+    margin: 20px 0 20px 0;
+    border-color: var(--gray);
+}
+
+.standard-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: min(70vw, 300px);
+    margin-top: 20px;
+    margin-bottom: 45px;
+}
+.standard-form-container table {
+    font-size: 20px;
+}
+.standard-form-container table p {
+    font-weight: bold;
+}
+.standard-form-container table td.label {
+    width: 90px;
+    padding-right: 10px;
+    /*display: flex;
+    justify-content: flex-end;*/
+    text-align: right;
+}
+.standard-form-container input {
+    text-align: left;
+}
+.standard-form-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.standard-form-container hr {
+    width: 100%;
+}
+
+/*======================================== ERRORS */
+p.error {
+    color: red;
+    font-family: var(--main-sans-font);
+    font-size: 15px;
+    font-style: italic;
+    margin-left: auto;
+    text-align: right;
+}
+label.error {
+    color: red;
+}
+label.highlighted.error {
+    color: red;
+}
+input[type="text"].error, input[type="password"].error {
+    border-color: red;
+}
+input[type="text"].error:focus, input[type="password"].error:focus {
+    border-color: red;
+}
+/*================================================ */
 
 hr {
     border: 1px solid black;
@@ -84,8 +171,13 @@ main {
 }
 
 .off {
-    color: rgba(126,126,126);
+    color: var(--gray);
     pointer-events: none;
+}
+
+.sans {
+    font-family: var(--main-sans-font);
+    font-weight: 600;
 }
 
 .cover {
@@ -98,12 +190,6 @@ main {
     opacity: 0;
     transition: .3s;
     pointer-events: none;
-}
-
-p.error {
-    color: red;
-    font-size: 15px;
-    font-style: italic;
 }
 
 /*================================= HAMBURGER MENU */
@@ -303,8 +389,7 @@ a.menu-bold {
 .big-btn {
     /* height: 50px; */
     padding: 20px 10px 20px 10px;
-    min-width: 50vw;
-    max-width: 300px;
+    width: min(70vw, 300px) !important;
     background-color: #000;
     color: #fff;
     font-size: 18px;
@@ -325,13 +410,18 @@ a.menu-bold {
     transition: .1s;
 }
 
+a.a-btn {
+    font-size: 25px;
+    font-family: var(--main-serif-font);
+}
+
 input[type='submit'].big-btn {
     background-color: #000;
     font-size: 18px;
     text-align: center;
-    min-width: 50vw;
-    max-width: 300px;
+    width: min(70vw, 300px) !important;
 }
+
 input[type='submit'].big-btn:hover {
     transform: scale(1.01);
     cursor: pointer;

@@ -56,7 +56,7 @@
             $identifier = generateCode();
             $query = "SELECT indentifier FROM $table WHERE identifier = $identifier";
             $result = $connection->query($query);
-        } while ($result);
+        } while ( $result->fetch_row() );
 
         return $identifier;
     }
