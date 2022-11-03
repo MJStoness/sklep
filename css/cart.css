@@ -120,7 +120,7 @@ input::-webkit-inner-spin-button {
     width: 90vw;
 }
 .cart-summary p {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--main-font);
     font-size: 30px;
 }
 .cart-summary-price {

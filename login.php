@@ -4,8 +4,8 @@
 
     require_once "config.php";
 
-    //mysqli_report(MYSQLI_REPORT_STRICT);
-    //error_reporting(0);
+    mysqli_report(MYSQLI_REPORT_STRICT);
+    error_reporting(0);
 
     try {
         $connection = new mysqli($servername,$username,$passwd,$dbname);
@@ -39,7 +39,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep - Logowanie</title>
-    <link rel="stylesheet" href="css/main.css" >
+    <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/login.css" >
 </head>
 <body>
@@ -51,9 +51,11 @@
         <a href="cart.php" class="menu-bold">Koszyk</a>
     </div>
 
-    <div class="hamburger-container scroll-minimize">
-        <input type="checkbox" id="hamburger-checkbox" autocomplete="off"> 
-        <img src="gfx/hamburger.svg" class="hamburger-icon">
+    <div class='hamburger-container scroll-minimize'>
+        <input type='checkbox'>
+        <div class='hamburger'>
+            <div></div>
+        </div>
     </div>
 
     <header class="scroll-minimize">

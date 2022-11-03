@@ -1,0 +1,82 @@
+* {
+    --anim: .1s ease-out;
+    --hamburger-width: 28px;
+    --hamburger-height: 22px;
+    --rec-height: 16%;
+  }
+  
+  .hamburger-container {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    height: var(--hamburger-height);
+    width: var(--hamburger-width);
+    display: grid;
+    z-index: 200;
+    transition: .2s;
+  }
+  
+  .hamburger-container input[type='checkbox'] {
+    height: var(--hamburger-height);
+    width: var(--hamburger-width);
+    grid-column: 1;
+    grid-row: 1;
+    opacity: 0;
+    z-index: 200;
+  }
+  
+  .hamburger-container input[type='checkbox']:hover {
+    cursor: pointer;
+  }
+  
+  .hamburger {
+    z-index: 190;
+    grid-column: 1;
+    grid-row: 1;
+    height: var(--hamburger-height);
+    width: var(--hamburger-width);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .hamburger div {
+    height: var(--rec-height);
+    width: 100%;
+    border-radius: 90rem;
+    background-color: black;
+    transition: var(--anim);
+  }
+  
+  .hamburger::before {
+    height: var(--rec-height);
+    width: 100%;
+    border-radius: 90rem;
+    background-color: black;
+    content: "";
+    transition: var(--anim);
+  }
+  
+  .hamburger::after{
+    height: var(--rec-height);
+    width: 100%;
+    border-radius: 90rem;
+    background-color: black;
+    content: "";
+    transition: var(--anim);
+  }
+  
+  .hamburger-container input[type='checkbox']:checked + .hamburger::before {
+    transform: translateY( calc(var(--hamburger-height) / 2 - 50%) ) rotate(-45deg);
+    transition: var(--anim);
+  }
+  
+  .hamburger-container input[type='checkbox']:checked + .hamburger::after {
+    transform: translateY( calc(var(--hamburger-height) / -2 + 50%) ) rotate(45deg);
+    transition: var(--anim);
+  }
+  
+  .hamburger-container input[type='checkbox']:checked + .hamburger div {
+    opacity: 0;
+    transition: var(--anim);
+  }

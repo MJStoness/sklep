@@ -1,4 +1,4 @@
-const MENU_TOGGLE = document.querySelector("#hamburger-checkbox");
+const MENU_TOGGLE = document.querySelector(".hamburger-container input[type='checkbox']");
 const MENU_CONTAINER = document.querySelector(".menu-container");
 const COVER = document.querySelector(".cover");
 

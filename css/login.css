@@ -3,12 +3,6 @@ input.big-btn {
     width: 60vw !important;
 }
 
-.label {
-    font-size: 20px;
-    margin-top: 15px;
-    margin-bottom: 5px;
-}
-
 .login-container {
     display: flex;
     flex-direction: column;

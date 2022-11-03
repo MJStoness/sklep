@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Serif+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 * {
-    font-family: 'Cormorant', serif;
+    font-family: var(--secondary-font);
     margin: 0;
     padding: 0;
-    --num-font: 'Noto Serif JP', serif;
-    --main-sans-font: 'Noto Sans JP', sans-serif;
-    --main-serif-font: 'DM Serif Display', serif;
+    --num-font: 'Noto Sans JP', sans-serif;
+    --secondary-font: 'Noto Sans JP', sans-serif;
+    --main-font: 'Josefin Sans', sans-serif;
     --mobile-width: 70vw;
     --gray: rgba(160, 160, 160);
 }
@@ -17,32 +18,33 @@ body {
     background-color: white;
 }
 
-/* input[type="text"],input[type="password"] {
-    font-size: 20px;
-    width: 100%;
-    height: 25px;
-    border: none;
-    border-bottom: 2px solid var(--gray);
-    text-align: center;
+label {
+    margin-right: auto;
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }
-input[type="text"]:focus,input[type="password"]:focus {
-    outline: none;
-    border-bottom: 2px solid rgb(0, 0, 0);
-} */
 
 label[data-highlight="yes"] {
-    margin-right: auto;
+    /*margin-right: auto;*/
     color: rgb(73, 73, 73);
+}
+.clean-label {
+    margin: 0;
 }
 input[type="text"], input[type="password"] {
     width: calc(100% - 20px);
     padding: 10px;
     border: none;
     border: 2px solid var(--gray);
+    border-radius: 10px;
 }
 input[type="text"]:focus,input[type="password"]:focus {
     outline: none;
     border: 2px solid rgb(0, 0, 0);
+}
+input.showcase {
+    border: none;
 }
 
 label.highlighted {
@@ -92,7 +94,7 @@ label.highlighted {
 /*======================================== ERRORS */
 p.error {
     color: red;
-    font-family: var(--main-sans-font);
+    font-family: var(--secondary-font);
     font-size: 15px;
     font-style: italic;
     margin-left: auto;
@@ -121,8 +123,12 @@ a {
     color: black;
 }
 
+header h1 {
+    font-weight: 600;
+}
+
 h1,h2,h3,h4,h5 {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--main-font);
     text-align: center;
 }
 
@@ -176,7 +182,7 @@ main {
 }
 
 .sans {
-    font-family: var(--main-sans-font);
+    font-family: var(--secondary-font);
     font-weight: 600;
 }
 
@@ -193,7 +199,7 @@ main {
 }
 
 /*================================= HAMBURGER MENU */
-.hamburger-container {
+/* .hamburger-container {
     display: grid;
     position: fixed;
     top: 15px;
@@ -217,7 +223,7 @@ main {
 #hamburger-checkbox{
     z-index: 200;
     opacity: 0;
-}
+} */
 /*================================================*/
 
 .small h1 {
@@ -229,10 +235,10 @@ header.small {
 .hamburger-container.small {
     top: 8px;
     right: 10px;
+    transition: .2s;
 }
 
 /*========================================= MENU */
-
 .menu-container {
     display: flex;
     flex-direction: column;
@@ -393,7 +399,7 @@ a.menu-bold {
     background-color: #000;
     color: #fff;
     font-size: 18px;
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--main-font);
     border: none;
 
     transition: .2s;
@@ -412,7 +418,7 @@ a.menu-bold {
 
 a.a-btn {
     font-size: 25px;
-    font-family: var(--main-serif-font);
+    font-family: var(--main-font);
 }
 
 input[type='submit'].big-btn {

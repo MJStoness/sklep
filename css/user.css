@@ -1,37 +1,20 @@
-/*table, td, tr {
-    outline: 1px red solid;
-    border-collapse: collapse;
-}*/
-
-tr {
-    height: 50px;
-}
-
-td input {
-    margin-bottom: 10px;
-}
-
-a {
-    font-size: 25px;
-}
-
-.user-settings {
-    margin-left: 15px;
-    margin-bottom: 20px;
-}
-
-.user-settings-container {
-    width: 80%;
+.user-settings-container form {
+    width: var(--mobile-width);
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
 }
 
-.user-settings-title, .user-settings-field {
-    font-size: 20px;
+.user-setting-container {
+    width: 100%;
+    display: flex;
 }
 
-.user-settings-field {
-    font-weight: normal;
-    margin-left: 5px;
+.setting-change {
+    margin-left: 20px;
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+.setting-change i {
+
 }

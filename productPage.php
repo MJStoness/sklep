@@ -48,7 +48,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep - Logowanie</title>
-    <link rel="stylesheet" href="css/main.css" >
+    <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/display.css" >
 </head>
 <body>
@@ -60,9 +60,11 @@
         <a href="index.php" class="menu-bold">Sklep</a>
     </div>
 
-    <div class="hamburger-container scroll-minimize">
-        <input type="checkbox" id="hamburger-checkbox" autocomplete="off"> 
-        <img src="gfx/hamburger.svg" class="hamburger-icon">
+    <div class='hamburger-container scroll-minimize'>
+        <input type='checkbox'>
+        <div class='hamburger'>
+            <div></div>
+        </div>
     </div>
 
     <header class="scroll-minimize">

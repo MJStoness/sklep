@@ -8,6 +8,32 @@
         else return false;
     }
 
+    require_once "config.php";
+
+    mysqli_report(MYSQLI_REPORT_STRICT);
+    error_reporting(0);
+    
+    try {
+        $connection = new mysqli($servername,$username,$passwd,$dbname);
+
+        if ( $connection->connect_errno ) {
+            throw new Exception();
+        } else {
+            $userData = array();
+
+            $query = "SELECT * FROM user WHERE `user_id`=".$_SESSION['loggedin_id'];
+            if ( $response = $connection->query($query) ) {
+                $userData = $response->fetch_assoc();
+                $response->free();
+            } else {
+                throw new Exception();
+            }
+        }
+
+    } catch ( Exception $e ) {
+        echo "SRAKA";
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +43,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep - Konto</title>
     <link rel="stylesheet" href="css/main.css" >
+    <link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/login.css" >
     <link rel="stylesheet" href="css/user.css" >
+    <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cover">&nbsp;</div>
@@ -29,9 +57,17 @@
         <a href="cart.php" class="menu-bold">Koszyk</a>
     </div>
 
-    <div class="hamburger-container scroll-minimize">
-        <input type="checkbox" id="hamburger-checkbox" autocomplete="off"> 
-        <img src="gfx/hamburger.svg" class="hamburger-icon">
+    <!-- <div class="menu-container hidden">
+        <br><br>
+        <a href="index.php" class="menu-bold">Sklep</a>
+        <a href="cart.php" class="menu-bold">Koszyk</a>
+    </div> -->
+
+    <div class='hamburger-container scroll-minimize'>
+        <input type='checkbox'>
+        <div class='hamburger'>
+            <div></div>
+        </div>
     </div>
 
     <header class="scroll-minimize">
@@ -39,59 +75,21 @@
     </header>
 
     <main>
-        <section class="user-settings-container">
+        
             <h3>Moje konto:<h3>
+        <section class="user-settings-container">
             <form>
-            <table class="user-settings">
-                <tr>
-                    <td><p class="user-settings-title">Email: </p></td>
-                    <td>
-                        <?php
-                            if ( zmiana() ) {
-                                echo '<input type="text" name="email"></input>';
-                            } else {
-                                echo '<p class="user-settings-field">methdealer420@onet.pl</p>';
-                            }
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td><p class="user-settings-title">Nazwa: </p></td>
-                    <td>
-                    <?php
-                            if ( zmiana() ) {
-                                echo '<input type="text" name="username"></input>';
-                            } else {
-                                echo '<p class="user-settings-field">Xx_Heisenberg_xX</p>';
-                            }
-                        ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td><p class="user-settings-title">Hasło: </p></td>
-                    <td>
-                    <?php
-                            if ( zmiana() ) {
-                                echo '<input type="password" name="passwd"></input>';
-                            } else {
-                                echo '<p class="user-settings-field">***************</p>';
-                            }
-                        ?>
-                    </td>
-                </tr>
-                <?php
-                    if ( zmiana() ) {
-                        echo '<tr><td></td><td><input type="password" name="passwd"></input></td></tr>';
-                    }
-                ?>
-            </table>
-            <?php
-                if ( zmiana() ) {
-                    echo '<input type="submit"';
-                } else {
-                    echo '<a href="?zmiana=yes">Zatwierdź</a>';
-                }
-            ?>
+                <label class='sans'>Email:</label>
+                <div class='user-setting-container'>
+                    <input type='text' value='<?php echo $userData['email'] ?>' class='sans sshowcase'>
+                    <button class='setting-change'><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
+                </div>
+
+                <label class='sans'>Login:</label>
+                <div class='user-setting-container'>
+                    <input type='text' value='<?php echo $userData['login'] ?>' class='sans sshowcase'>
+                    <button class='setting-change'><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
+                </div>
             </form>
         </section>
     </main>

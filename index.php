@@ -77,14 +77,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep</title>
     <link rel="stylesheet" href="css/main.css" >
+    <link rel="stylesheet" href="css/hamburger.css" >
 </head>
 <body>
     <div class="cover">&nbsp;</div>
 
+    <div class='hamburger-container scroll-minimize'>
+        <input type='checkbox'>
+        <div class='hamburger'>
+            <div></div>
+        </div>
+    </div>
+
     <div class="menu-container hidden">
         <form action="#" method="POST">
             <div class="menu-header">
-                <label for="kategoria"><p class="menu-bold">Kategoria:</p></label>
+                <label for="kategoria" class="clean-label"><p class="menu-bold">Kategoria:</p></label>
                 <div class="dropdown-container">
                     <input type="checkbox" class="dropdown-checkbox" autocomplete="off" id="kategoria" <?php if ( isset($_POST['category']) ) echo "checked";?>>
                     <img src="gfx/dropdown.svg" class="dropdown-icon">
@@ -110,7 +118,7 @@
             </div>
 
             <div class="menu-header">
-                <label for="sortuj"><p class="menu-bold">Sortuj:</p></label>
+                <label for="sortuj" class="clean-label"><p class="menu-bold">Sortuj:</p></label>
                 <div class="dropdown-container">
                     <input type="checkbox" class="dropdown-checkbox" autocomplete="off" id="sortuj" <?php if ( isset($_POST['priceSort']) ) echo "checked";?>>
                     <img src="gfx/dropdown.svg" class="dropdown-icon">
@@ -124,12 +132,21 @@
             <input type="submit" value="Filtruj">
         </form>
         <a href="cart.php" class="menu-bold">Koszyk</a>
-        <a href="login.php" class="menu-bold">Zaloguj</a>
+        <?php
+            if ( isset($_SESSION['loggedin_id']) ) {
+                echo "<a href='user.php' class='menu-bold'>Konto</a>";
+                echo "<a href='loginout.php' class='menu-bold'>Wyloguj</a>";
+            } else {
+                echo "<a href='login.php' class='menu-bold'>Zaloguj</a>";
+            }
+            
+        ?>
     </div>
 
-    <div class="hamburger-container scroll-minimize">
-        <input type="checkbox" id="hamburger-checkbox" autocomplete="off"> 
-        <img src="gfx/hamburger.svg" class="hamburger-icon">
+    <div class="menu-container hidden">
+        <br><br>
+        <a href="index.php" class="menu-bold">Sklep</a>
+        <a href="cart.php" class="menu-bold">Koszyk</a>
     </div>
 
     <header class="scroll-minimize">
