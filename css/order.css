@@ -10,7 +10,7 @@ tr.error td {
     height: 20px;
 }
 
-.order-entry-summary, .order-entry {
+.order-entry-summary {
     width: 70vw;
     padding: 7px;
 }
@@ -19,6 +19,8 @@ tr.error td {
     background-color: rgb(240, 240, 240);
     display: flex;    
     margin-bottom: 10px;
+    padding: 7px;
+    width: calc( 100% - 14px );
 }
 .order-entry h5 {
     margin-right: 20px;

@@ -133,8 +133,16 @@
     <div class="menu-container hidden">
         <br><br>
         <a href="index.php" class="menu-bold">Sklep</a>
-        <a href="cart.php" class="menu-bold">Koszyk</a>
-        <a href="login.php" class="menu-bold">Zaloguj</a>
+        <a href="cart.php" class="menu-bold"><img src="gfx/cart.svg" alt="koszyk"></a>
+        <?php
+            if ( isset($_SESSION['loggedin_id']) ) {
+                echo "<a href='user.php' class='menu-bold'><img src='gfx/user.svg' alt='konto'></a>";
+                echo "<a href='logout.php' class='menu-bold'><img src='gfx/logout.svg' alt='wyloguj'></a>";
+            } else {
+                echo "<a href='login.php' class='menu-bold'><img src='gfx/login.svg' alt='zaloguj'></a>";
+            }
+            
+        ?>
     </div>
 
     <div class='hamburger-container scroll-minimize'>
@@ -238,7 +246,10 @@
                 </p>
                 <!-- ===================================================================================================================== -->
 
-                <div class="menu-header">
+                <input type='submit' value='ZAMIAWIAM I PŁACĘ' class='big-btn' name='submit'>
+                <input type='hidden' name='token' value='true'>
+            </form>
+            <div class="menu-header">
                     <label for="kategoria" class="clean-label"><p class="menu-bold small">Pokaż Zamówienie:</p></label>
                     <div class="dropdown-container">
                         <input type="checkbox" class="dropdown-checkbox" autocomplete="off" id="kategoria">
@@ -262,10 +273,7 @@
                     ?>
                     
                 </div>
-                <input type='submit' value='ZAMIAWIAM I PŁACĘ' class='big-btn' name='submit'>
-                <input type='hidden' name='token' value='true'>
-            </form>
-            
+
         </section>
     
     </main>

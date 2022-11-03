@@ -15,6 +15,7 @@
     background-color: rgba(0,0,0,0);
     border: none;
 }
-.setting-change i {
-
+.setting-change img {
+    width: 30px;
+    height: auto;
 }

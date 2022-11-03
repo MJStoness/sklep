@@ -46,7 +46,6 @@
     <link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/login.css" >
     <link rel="stylesheet" href="css/user.css" >
-    <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cover">&nbsp;</div>
@@ -54,14 +53,9 @@
     <div class="menu-container hidden">
         <br><br>
         <a href="index.php" class="menu-bold">Sklep</a>
-        <a href="cart.php" class="menu-bold">Koszyk</a>
+        <a href="cart.php" class="menu-bold"><img src="gfx/cart.svg" alt="koszyk"></a>
+        <a href='logout.php' class='menu-bold'><img src='gfx/logout.svg' alt='wyloguj'></a>
     </div>
-
-    <!-- <div class="menu-container hidden">
-        <br><br>
-        <a href="index.php" class="menu-bold">Sklep</a>
-        <a href="cart.php" class="menu-bold">Koszyk</a>
-    </div> -->
 
     <div class='hamburger-container scroll-minimize'>
         <input type='checkbox'>
@@ -81,14 +75,14 @@
             <form>
                 <label class='sans'>Email:</label>
                 <div class='user-setting-container'>
-                    <input type='text' value='<?php echo $userData['email'] ?>' class='sans sshowcase'>
-                    <button class='setting-change'><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
+                    <input type='text' value='<?php echo $userData['email'] ?>' class='sans showcase'>
+                    <button class='setting-change'><img src='gfx/edit.svg'></button>
                 </div>
 
                 <label class='sans'>Login:</label>
                 <div class='user-setting-container'>
-                    <input type='text' value='<?php echo $userData['login'] ?>' class='sans sshowcase'>
-                    <button class='setting-change'><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
+                    <input type='text' value='<?php echo $userData['login'] ?>' class='sans showcase'>
+                    <button class='setting-change'><img src='gfx/edit.svg'></button>
                 </div>
             </form>
         </section>
