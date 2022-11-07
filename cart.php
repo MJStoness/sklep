@@ -16,45 +16,59 @@
             $images = array();
 
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "LOGGEDIN CART";
-            }
-            if ( isset($_SESSION['guest']) ) {
-                $query = "SELECT cart_id FROM cart WHERE guest=".$_SESSION['guest'];
+
+                $query = "SELECT cart_id FROM cart WHERE `user_id`=".$_SESSION['loggedin_id'];
                 if ( $response = $connection->query($query) ) {
                     $cartId = $response->fetch_assoc()['cart_id'];
                 } else {
                     throw new Exception();
                 }
 
-                $query = "SELECT cart_entry_id,cart_id,product.product_id,quantity,price,name FROM `cart_entry` JOIN product on ( cart_entry.product_id = product.product_id ) WHERE cart_id=".$cartId;
+            }
+            else if ( !isset($_SESSION['loggedin_id']) && isset($_SESSION['guest']) ) {
+
+                $query = "SELECT cart_id FROM cart WHERE guest=".$_SESSION['guest'];
                 if ( $response = $connection->query($query) ) {
-                    fetchAllToArray($cartEntries, $response);
-                    $response->free();
+                    $cartId = $response->fetch_assoc()['cart_id'];
                 } else {
                     throw new Exception();
                 }
+                
+            }
+            else {
+                $cartId = null;
+            }
 
-                //================================================ RETRIEVING PHOTOS
-                if ( count($cartEntries) ) {
-                    $query = "SELECT * FROM image GROUP BY product_id HAVING product_id IN(".colToString($cartEntries, 'product_id', ', ').")";
+            if ( $cartId != null ) {
+                $query = "SELECT cart_entry_id,cart_id,product.product_id,quantity,price,`name` FROM `cart_entry` JOIN product on ( cart_entry.product_id = product.product_id ) WHERE cart_id=".$cartId;
                     if ( $response = $connection->query($query) ) {
-                        fetchAllToArray($images, $response);
+                        fetchAllToArray($cartEntries, $response);
                         $response->free();
                     } else {
                         throw new Exception();
                     }
-                }
-                //================================================
 
-                unionArraysByCommonIndex($cartEntries, $images, 'img_path', 'product_id', 'path');
-            }
+                    //================================================ RETRIEVING PHOTOS
+                    if ( count($cartEntries) ) {
+                        $query = "SELECT * FROM image GROUP BY product_id HAVING product_id IN(".colToString($cartEntries, 'product_id', ', ').")";
+                        if ( $response = $connection->query($query) ) {
+                            fetchAllToArray($images, $response);
+                            $response->free();
+                        } else {
+                            throw new Exception();
+                        }
+                    }
+                    //================================================
 
-            if ( isset($_POST['delete_id']) ) {
-                $query = "DELETE FROM `cart_entry` WHERE `cart_entry_id`=".$_POST['delete_id'];
-                if ( !$connection->query($query) ) {
-                    throw new Exception();
+                    unionArraysByCommonIndex($cartEntries, $images, 'img_path', 'product_id', 'path');
+
+                if ( isset($_POST['delete_id']) ) {
+                    $query = "DELETE FROM `cart_entry` WHERE `cart_entry_id`=".$_POST['delete_id'];
+                    if ( !$connection->query($query) ) {
+                        throw new Exception();
+                    }
+                    header("Refresh:0");
                 }
-                header("Refresh:0");
             }
 
             $connection->close();
@@ -155,8 +169,6 @@
                         </form>
                     </section>";
             }
-
-            #TO DO:
 
         ?>
 

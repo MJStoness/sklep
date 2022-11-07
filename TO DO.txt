@@ -1,0 +1,5 @@
+- poups
+- potwierdzenie dodania do koszyka
+- panel uzytkownika
+- panel admina
+- wyizolować validacje formularzy do funkcji

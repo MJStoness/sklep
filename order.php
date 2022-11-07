@@ -7,8 +7,8 @@
 
     require_once "config.php";
 
-    mysqli_report(MYSQLI_REPORT_STRICT);
-    error_reporting(0);
+    //mysqli_report(MYSQLI_REPORT_STRICT);
+    //error_reporting(0);
 
     try {
         $connection = new mysqli($servername,$username,$passwd,$dbname);
@@ -19,7 +19,7 @@
             $orderEntries = array();
             $images = array();
             
-            $query = "SELECT cart_entry_id,cart_entry.cart_id,product.product_id,quantity,price,name,cart.guest,cart.user_id FROM `cart_entry` JOIN product on ( cart_entry.product_id = product.product_id ) JOIN cart on ( cart.cart_id = cart_entry.cart_id ) WHERE cart_entry.cart_id=".$_GET['cart_id'];
+            $query = "SELECT cart_entry_id,cart_entry.cart_id,product.product_id,quantity,price,`name`,cart.guest,cart.user_id FROM `cart_entry` JOIN product on ( cart_entry.product_id = product.product_id ) JOIN cart on ( cart.cart_id = cart_entry.cart_id ) WHERE cart_entry.cart_id=".$_GET['cart_id'];
             if ( $response = $connection->query($query) ) {
                 fetchAllToArray($orderEntries, $response);
                 $response->free();

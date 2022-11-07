@@ -47,6 +47,19 @@
                     if ( !$connection->query($query) ) {
                         throw new Exception();
                     }
+
+                    $query = "SELECT `user_id` FROM user WHERE email='".mysqli_real_escape_string($connection, htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"))."'";
+                    if ( $response = $connection->query($query) ) {
+                        $userId = $response->fetch_row()[0];
+                    } else {
+                        throw new Exception();
+                    }
+
+                    $query = "INSERT INTO cart (`user_id`) VALUES ($userId)";
+                    if ( !$connection->query($query) ) {
+                        throw new Exception();
+                    }
+
                     header("Location: signedup.php");
                 }
             }

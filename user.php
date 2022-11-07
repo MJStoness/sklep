@@ -28,12 +28,18 @@
             } else {
                 throw new Exception();
             }
+
+            if ( $_POST['change'] == 'change' ) {
+                
+            }
         }
 
     } catch ( Exception $e ) {
         echo "SRAKA";
     }
 
+    #TO DO:
+    # - only one edit button actvates the whole form. (it's easier and I'm stoopid)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,18 +78,34 @@
         
             <h3>Moje konto:<h3>
         <section class="user-settings-container">
-            <form>
-                <label class='sans'>Email:</label>
+            <form action='' method='POST'>
+                <label class='sans <?php if ( isset($emailError) ) echo 'error'; ?>'>Email:</label>
                 <div class='user-setting-container'>
-                    <input type='text' value='<?php echo $userData['email'] ?>' class='sans showcase'>
-                    <button class='setting-change'><img src='gfx/edit.svg'></button>
+                    <input type='text' name='email' value='<?php echo $userData['email'] ?>' class='sans <?php if ( !isset($emailError) && !isset($_POST['change'])) echo 'showcase';?> <?php if ( isset($emailError) ) echo 'error'; ?>'>
+                    <button type='button' class='setting-change <?php if ( isset($emailError) ) echo 'hidden'; ?>'><img src='gfx/edit.svg'></button>
                 </div>
+                <p class='error'>
+                    <?php
+                        if ( isset($emailError) ) echo $emailError;
+                        else echo '&nbsp;'
+                    ?>
+                </p>
 
-                <label class='sans'>Login:</label>
+                <label class='sans <?php if ( isset($loginError) ) echo 'error'; ?>'>Login:</label>
                 <div class='user-setting-container'>
-                    <input type='text' value='<?php echo $userData['login'] ?>' class='sans showcase'>
-                    <button class='setting-change'><img src='gfx/edit.svg'></button>
+                    <input type='text' name='login' value='<?php echo $userData['login'] ?>' class='sans showcase <?php if ( isset($loginError) ) echo 'error'; ?>'>
+                    <button type='button' class='setting-change'><img src='gfx/edit.svg'></button>
                 </div>
+                <p class='error'>
+                    <?php
+                        if ( isset($loginError) ) echo $loginError;
+                        else echo '&nbsp;'
+                    ?>
+                </p>
+
+                <br><br>
+                <input type='hidden' value='change' name='change'>
+                <input type='submit' value='Zmień dane' name='submit' class='big-btn off' id='settings-submit'>
             </form>
         </section>
     </main>
@@ -91,4 +113,5 @@
 </body>
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
+<script src="scripts/userSettings.js"></script>
 </html>

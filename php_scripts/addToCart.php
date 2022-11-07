@@ -6,7 +6,7 @@
     $connection = new mysqli($servername,$username,$passwd,$dbname);
 
     if ( !$connection->connect_errno ) {
-        if ( !isset($_SESSION['loggedIn']) ) {
+        if ( !isset($_SESSION['loggedin_id']) ) {
             //=========================================================== CART CREATION
             if ( !isset($_SESSION['guest']) ) { 
                 //================================== GUEST CREATION
@@ -35,6 +35,15 @@
             $query = "INSERT INTO cart_entry (`cart_id`, `product_id`, `quantity`) VALUES (".$cartId.", ".$_POST['product_id'].", 1)";
             $connection->query($query);
 
+        } else {
+
+            $query = "SELECT cart_id FROM cart WHERE `user_id`=".$_SESSION['loggedin_id'];
+            if ( $response = $connection->query($query) ) {
+                $cartId = $response->fetch_assoc()['cart_id'];
+            }
+
+            $query = "INSERT INTO cart_entry (`cart_id`, `product_id`, `quantity`) VALUES (".$cartId.", ".$_POST['product_id'].", 1)";
+            $connection->query($query);
         }
 
         $connection->close();

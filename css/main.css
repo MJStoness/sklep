@@ -36,14 +36,16 @@ input[type="text"], input[type="password"] {
     width: calc(100% - 20px);
     padding: 10px;
     border: none;
-    border: 1px solid var(--gray);
+    outline: 2px solid var(--gray);
 }
 input[type="text"]:focus,input[type="password"]:focus {
     outline: none;
-    border: 1px solid rgb(0, 0, 0);
+    outline: 2px solid rgb(0, 0, 0);
 }
 input.showcase {
     border: none;
+    outline: none;
+    pointer-events: none;
 }
 
 label.highlighted {
@@ -106,10 +108,10 @@ label.highlighted.error {
     color: red;
 }
 input[type="text"].error, input[type="password"].error {
-    border-color: red;
+    outline-color: red;
 }
 input[type="text"].error:focus, input[type="password"].error:focus {
-    border-color: red;
+    outline-color: red;
 }
 /*================================================ */
 
@@ -182,6 +184,9 @@ main {
 .off {
     color: var(--gray);
     pointer-events: none;
+}
+.big-btn.off {
+    background-color: var(--gray) !important;
 }
 
 .sans {
@@ -326,6 +331,10 @@ a.menu-bold {
 
 .dropdown-content.hidden {
     display: none;
+}
+
+button.hidden {
+    visibility: hidden;
 }
 
 
