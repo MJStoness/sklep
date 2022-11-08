@@ -3,3 +3,4 @@
 - panel uzytkownika
 - panel admina
 - wyizolować validacje formularzy do funkcji
+- usprawnić walidacje wykonania zapytania

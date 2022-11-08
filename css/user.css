@@ -10,12 +10,15 @@
     display: flex;
 }
 
-.setting-change {
+#change-settings {
     margin-left: 20px;
     background-color: rgba(0,0,0,0);
     border: none;
 }
-.setting-change img {
+#change-settings img {
     width: 30px;
     height: auto;
+}
+.user-settings-header {
+    display: flex;
 }
