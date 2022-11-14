@@ -79,15 +79,17 @@
     <link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/login.css" >
     <link rel="stylesheet" href="css/user.css" >
+    <link rel="stylesheet" href="css/secondary.css" >
+    <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <br><br>
-        <a href="index.php" class="menu-bold">Sklep</a>
-        <a href="cart.php" class="menu-bold"><img src="gfx/cart.svg" alt="koszyk"></a>
-        <a href='logout.php' class='menu-bold'><img src='gfx/logout.svg' alt='wyloguj'></a>
+        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
+        <a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>
+
     </div>
 
     <div class='hamburger-container scroll-minimize'>
@@ -105,7 +107,7 @@
         
         <section class='user-settings-header'>
             <h3>Moje konto:<h3>
-            <button type='button' class='<?php if ( isset($anyError) ) echo 'hidden'; ?>'  id='change-settings'><img src='gfx/edit.svg'></button>
+            <button type='button' class='<?php if ( isset($anyError) ) echo 'hidden'; ?>'  id='change-settings'><i class="fa-solid fa-user-pen fa-2xl"></i></button>
         </section>
         <section class="user-settings-container">
             <form action='' method='POST'>

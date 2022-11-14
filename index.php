@@ -78,6 +78,7 @@
     <title>Sklep</title>
     <link rel="stylesheet" href="css/main.css" >
     <link rel="stylesheet" href="css/hamburger.css" >
+    <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cover">&nbsp;</div>
@@ -104,9 +105,14 @@
 
                     //======================================== PROCEDURAL CATEGORY MENU GENERATING WITH CATEGORIES IN DATABASE
                     foreach ( $categories as $category ) {
-                        echo "<label><input type='checkbox' name='category[]' value='".$category['category']."'";
-                        if(isset($_POST['category']) && in_array($category['category'],$_POST['category'])) echo "checked";
-                        echo "> ".$category['category']."</label>";
+                        echo "<label>
+                            <div class='custom-checkbox'>
+                                <input type='checkbox' name='category[]' value='".$category['category']."'";
+                                    if(isset($_POST['category']) && in_array($category['category'],$_POST['category'])) echo "checked";
+                                echo ">
+                                <div><i class='fa-solid fa-check fa-l'></i></div>
+                            </div>";
+                        echo $category['category']."</label>";
                     }
                     //=================================================
 
@@ -125,27 +131,36 @@
                 </div>
             </div>
             <div class="menu-options dropdown-content <?php if ( !isset($_POST['priceSort']) ) echo "hidden";?>">
-                <label><input type="radio" name="priceSort" value="ASC" <?php if(isset($_POST['priceSort']) && $_POST['priceSort'] == "ASC") echo "checked";?>> Cena rosnąco</label>
-                <label><input type="radio" name="priceSort" value="DESC" <?php if(isset($_POST['priceSort']) && $_POST['priceSort'] == "DESC") echo "checked";?>> Cena malejąco</label>
+
+                <label><div class='custom-radio'>
+                    <input type='radio'  name="priceSort" value="ASC" <?php if(isset($_POST['priceSort']) && $_POST['priceSort'] == "ASC") echo "checked";?>>
+                    <div></div>
+                </div> Cena rosnąco</label>
+                <label><div class='custom-radio'>
+                    <input type='radio'  name="priceSort" value="DESC" <?php if(isset($_POST['priceSort']) && $_POST['priceSort'] == "DESC") echo "checked";?>>
+                    <div></div>
+                </div> Cena malejąco</label>
             </div>
 
-            <input type="submit" value="Filtruj">
+            <div class="filter-container">
+                <i class="fa-solid fa-filter fa-xl"></i>
+                <input type="submit" value="Filtruj">
+            </div>
         </form>
-        <!-- <a href="cart.php" class="menu-bold">Koszyk</a> -->
-        <a href="cart.php" class="menu-bold"><img src="gfx/cart.svg" alt="koszyk"></a>
+        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><img src='gfx/user.svg' alt='konto'></a>";
-                echo "<a href='logout.php' class='menu-bold'><img src='gfx/logout.svg' alt='wyloguj'></a>";
+                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><img src='gfx/login.svg' alt='zaloguj'></a>";
+                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh Shop</h1>
+        <h1 class="scroll-minimize">Waltuh</h1>
     </header>
 
     <main>
@@ -157,13 +172,15 @@
                         <a href='productPage.php?product_id=".$product['product_id']."'>
                             <img src='".$product['img_path']."' class='product-img'>
                             <div class='product-description'>
-                                <h5 class='product-title'>".$product['name']."</h5>
-                                <p class='product-price'>".$product['price']." zł</p>
+                                <span>
+                                    <h5 class='product-title'>".$product['name']."</h5>
+                                    <p class='product-price'>".$product['price']." PLN</p>
+                                </span>
                                 <p class='product-category'>".$product['category']."</p>
                             </div>
                         </a>
                         <button class='cart-btn' value='".$product['product_id']."'>
-                            <img src='gfx/cart.svg'>
+                            <i class='fa-solid fa-cart-shopping fa-xl'></i>
                         </button>
                     </section>";
             }

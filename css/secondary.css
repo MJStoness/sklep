@@ -1,0 +1,8 @@
+.menu-container {
+    width: 45px;
+    transition: .15s;
+    padding-top: 80px;
+}
+.menu-container.hidden {
+    right: -90px;
+}

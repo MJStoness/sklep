@@ -15,9 +15,8 @@
     background-color: rgba(0,0,0,0);
     border: none;
 }
-#change-settings img {
-    width: 30px;
-    height: auto;
+#change-settings i {
+    transform: translateY(-5px);
 }
 .user-settings-header {
     display: flex;

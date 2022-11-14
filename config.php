@@ -54,9 +54,9 @@
     function generateIdentifier($connection, string $table) {
         do {
             $identifier = generateCode();
-            $query = "SELECT indentifier FROM $table WHERE identifier = $identifier";
+            $query = "SELECT identifier FROM $table WHERE identifier = $identifier";
             $result = $connection->query($query);
-        } while ( $result->fetch_row() );
+        } while ( $result );
 
         return $identifier;
     }

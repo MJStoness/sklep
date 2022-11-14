@@ -1,14 +1,14 @@
 * {
     --anim: .1s ease-out;
     --hamburger-width: 28px;
-    --hamburger-height: 22px;
-    --rec-height: 16%;
+    --hamburger-height: 24px;
+    --rec-height: 15%;
   }
   
   .hamburger-container {
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: 26px;
+    right: 24px;
     height: var(--hamburger-height);
     width: var(--hamburger-width);
     display: grid;
@@ -44,7 +44,7 @@
     height: var(--rec-height);
     width: 100%;
     border-radius: 90rem;
-    background-color: black;
+    background-color: white;
     transition: var(--anim);
   }
   
@@ -52,7 +52,7 @@
     height: var(--rec-height);
     width: 100%;
     border-radius: 90rem;
-    background-color: black;
+    background-color: white;
     content: "";
     transition: var(--anim);
   }
@@ -61,7 +61,7 @@
     height: var(--rec-height);
     width: 100%;
     border-radius: 90rem;
-    background-color: black;
+    background-color: white;
     content: "";
     transition: var(--anim);
   }

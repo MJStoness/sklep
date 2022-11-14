@@ -2,6 +2,10 @@
     outline: 1px solid red;
 } */
 
+main {
+    margin-top: 110px !important;
+}
+
 tr.error td {
     padding-left: 90px;
     padding-bottom: 20px;

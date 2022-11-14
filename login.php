@@ -7,6 +7,10 @@
     mysqli_report(MYSQLI_REPORT_STRICT);
     error_reporting(0);
 
+    if ( isset($_SESSION['loggedin_id']) ) {
+        header("Location: user.php");
+    }
+
     try {
         $connection = new mysqli($servername,$username,$passwd,$dbname);
         
@@ -41,23 +45,16 @@
     <title>Sklep - Logowanie</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/login.css" >
+    <link rel="stylesheet" href="css/secondary.css" >
+    <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <br><br>
-        <a href="index.php" class="menu-bold">Sklep</a>
-        <a href="cart.php" class="menu-bold"><img src="gfx/cart.svg" alt="koszyk"></a>
-        <?php
-            if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><img src='gfx/user.svg' alt='konto'></a>";
-                echo "<a href='logout.php' class='menu-bold'><img src='gfx/logout.svg' alt='wyloguj'></a>";
-            } else {
-                echo "<a href='login.php' class='menu-bold'><img src='gfx/login.svg' alt='zaloguj'></a>";
-            }
-            
-        ?>
+        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
+        <a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>
     </div>
 
     <div class='hamburger-container scroll-minimize'>
@@ -68,11 +65,11 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh Shop</h1>
+        <h1 class="scroll-minimize">Waltuh</h1>
     </header>
 
     <main>
-        <h2>Logowanie</h2>
+        <h3 class="title">Logowanie</h3>
         <form class="standard-form-container" method="POST">
             <label class='sans <?php if ( isset($loginError) ) echo 'error'; ?>' for='form-login' data-highlight='yes'>Login lub email: </label>
             <input type='text' class='sans <?php if ( isset($loginError) ) echo 'error'; ?>' id='form-login' data-highlight='yes' name='login'

@@ -33,20 +33,21 @@
     <title>Sklep - Zamówienie</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/order.css" >
+    <link rel="stylesheet" href="css/secondary.css" >
+    <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <br><br>
-        <a href="index.php" class="menu-bold">Sklep</a>
-        <a href="cart.php" class="menu-bold"><img src="gfx/cart.svg" alt="koszyk"></a>
+        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><img src='gfx/user.svg' alt='konto'></a>";
-                echo "<a href='logout.php' class='menu-bold'><img src='gfx/logout.svg' alt='wyloguj'></a>";
+                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><img src='gfx/login.svg' alt='zaloguj'></a>";
+                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>

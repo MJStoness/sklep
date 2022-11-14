@@ -88,19 +88,20 @@
     <title>Sklep - Koszyk</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/cart.css" >
+    <link rel="stylesheet" href="css/secondary.css" >
+    <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <br><br>
-        <a href="index.php" class="menu-bold">Sklep</a>
+        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><img src='gfx/user.svg' alt='konto'></a>";
-                echo "<a href='logout.php' class='menu-bold'><img src='gfx/logout.svg' alt='wyloguj'></a>";
+                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><img src='gfx/login.svg' alt='zaloguj'></a>";
+                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>
@@ -114,12 +115,12 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh Shop</h1>
+        <h1 class="scroll-minimize">Waltuh</h1>
     </header>
 
     <main>
 
-        <h3>KOSZYK</h3>
+        <h3 class='title'>KOSZYK</h3>
 
         <?php
         
@@ -127,7 +128,7 @@
                 echo "<p>KOSZYK JEST PUSTY!</p>";    
             }
             else {
-                echo "<br><section class='cart-entry-container'>";
+                echo "<section class='cart-entry-container'>";
                 foreach ( $cartEntries as $cartEntry ) {
                     echo 
                         "<section class='cart-entry'>
@@ -150,7 +151,7 @@
                             <form class='delete-form' action='#' method='POST'>
                                 <input type='submit' value=''>
                                 <input type='hidden' name='delete_id' value=".$cartEntry['cart_entry_id'].">
-                                <img src='gfx/delete.svg'>
+                                <i class='fa-solid fa-trash fa-xl'></i>
                             </form>
                         </section>";
                 }
@@ -158,15 +159,19 @@
                 echo 
                     "
                     <section class='cart-summary'>
-                        <p class='small-title'>Suma: </p><p><span class='cart-summary-price'>".cartSum($cartEntries)."</span> zł</p>
-                        <hr>
-                        <button class='off btn' id='recalculate'>PRZELICZ</button>
-                    </section>
-                    <section class='order-container'>
-                        <form method='POST' action='order.php?cart_id=".$cartId."'>
-                            <input type='submit' value='ZŁÓŻ ZAMÓWIENIE' class='big-btn'>
-                            <input type='hidden' name='token' value='true'>
-                        </form>
+                        <p class='small-title'>Suma: </p>
+                        <p><span class='cart-summary-price'>".cartSum($cartEntries)." PLN</span></p>
+                        <button class='off small-btn gray' id='recalculate'>
+                            <i class='fa-solid fa-arrows-rotate'></i>
+                            PRZELICZ
+                        </button>
+                    
+                        <section class='order-container'>
+                            <form method='POST' action='order.php?cart_id=".$cartId."'>
+                                <input type='submit' value='ZŁÓŻ ZAMÓWIENIE' class='big-btn'>
+                                <input type='hidden' name='token' value='true'>
+                            </form>
+                        </section>
                     </section>";
             }
 

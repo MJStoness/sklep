@@ -7,8 +7,8 @@
 
     require_once "config.php";
 
-    //mysqli_report(MYSQLI_REPORT_STRICT);
-    //error_reporting(0);
+    mysqli_report(MYSQLI_REPORT_STRICT);
+    error_reporting(0);
 
     try {
         $connection = new mysqli($servername,$username,$passwd,$dbname);
@@ -56,8 +56,9 @@
                 # CHANGE THIS SHIIIT ASAP AGILE \/ \/ \/ \/ \/ !
                 if ( !isset($nameError)&&!isset($surnameError)&&!isset($emailError)&&!isset($emailError)&&!isset($addressError)&&!isset($postCodeError)&&!isset($contactNumberError) )  {
 
-                    // ================================================================================================ ORDER CREATION\
+                    // ================================================================================================ ORDER CREATION
                     $identifier = generateIdentifier($connection, 'order_overview');
+                    echo $identifier;
                     if ( isset($_SESSION['loggedin_id']) ) {
                         $query = "INSERT INTO order_overview (`user_id`, `identifier` `email`, a`ddress`, `name`, `surname`, `contact_number`) VALUES (
                             ".$_SESSION['loggedin_id'].",
@@ -126,20 +127,21 @@
     <title>Sklep - Zamówienie</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/order.css" >
+    <link rel="stylesheet" href="css/secondary.css" >
+    <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <br><br>
-        <a href="index.php" class="menu-bold">Sklep</a>
-        <a href="cart.php" class="menu-bold"><img src="gfx/cart.svg" alt="koszyk"></a>
+        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><img src='gfx/user.svg' alt='konto'></a>";
-                echo "<a href='logout.php' class='menu-bold'><img src='gfx/logout.svg' alt='wyloguj'></a>";
+                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><img src='gfx/login.svg' alt='zaloguj'></a>";
+                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>
@@ -161,7 +163,7 @@
         <h3>ZAMÓWIENIE</h3>
 
         <section class='standard-form-container'>
-            <form method='POST' action='#'>
+            <form method='POST' action=''>
                 <!-- ======================================================================================================== PERSONAL DATA -->
                 <label class='sans <?php if ( isset($nameError) ) echo 'error'; ?>' for='form-name' data-highlight='yes'>Imie: </label>
                 <input type='text' class='sans <?php if ( isset($nameError) ) echo 'error'; ?>' id='form-name' data-highlight='yes' name='name'
