@@ -93,7 +93,7 @@
                             <h5 class='display-title'>".$displayedProduct['name']."</h5>
                             <h5 class='display-price'>".$displayedProduct['price']." PLN</h5>
                         </div>
-                        <button class='cart-btn' value='".$product['product_id']."'>
+                        <button class='cart-btn' value='".$displayedProduct['product_id']."'>
                             <i class='fa-solid fa-cart-shopping fa-xl'></i>
                         </button>
                     </section>

@@ -6,6 +6,7 @@ BUTTONS.forEach( (element,index) => {
         setTimeout(() => {
             element.style.animation = "";
         }, 400);
+        console.log(element.value);
         const xhrAdd = new XMLHttpRequest();
         xhrAdd.open("POST","php_scripts/addToCart.php");
         xhrAdd.setRequestHeader("Content-type","application/x-www-form-urlencoded");
