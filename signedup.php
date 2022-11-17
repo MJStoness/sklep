@@ -14,14 +14,14 @@
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
-        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
+        <a href="." class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
-                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
+                echo "<a href='user' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
+                echo "<a href='login' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>
@@ -46,7 +46,7 @@
 
         <br><br><br><br><br><br><br><br><br>
             
-        <a href="login.php" class='a-btn'>Zaloguj się</a>
+        <a href="login" class='a-btn'>Zaloguj się</a>
     
     </main>
 

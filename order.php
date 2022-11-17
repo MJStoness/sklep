@@ -2,7 +2,7 @@
     session_start();
 
     if ( !isset($_POST['token']) ) {
-        header("Location: cart.php");
+        header("Location: cart");
     }
 
     require_once "config.php";
@@ -106,7 +106,7 @@
                     }
                     
                     $connection->close();
-                    header("Location: orderFinal.php?order_id=".$orderId);
+                    header("Location: orderFinal?order_id=".$orderId);
                 }
                 
             }
@@ -134,14 +134,14 @@
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
-        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
+        <a href="." class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
-                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
+                echo "<a href='user' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
+                echo "<a href='login' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>
@@ -260,17 +260,17 @@
                 </div>
                 <div class="menu-options dropdown-content hidden">
                     <?php
-                        echo "<a href='cart.php'>";
+                        echo "<a href='cart'>";
                         foreach ( $orderEntries as $orderEntry ) {
                             echo 
                                 "<section class='order-entry'>
-                                    <p class='order-entry-quantity'>".$orderEntry['quantity']."</p><h5>".$orderEntry['name']."</h5><p class='order-entry-price'><span>".number_format( (floatval($orderEntry['price'])*intval($orderEntry['quantity'])), 2, '.', '' )."</span> zł</p>
+                                    <p class='order-entry-quantity'>".$orderEntry['quantity']."</p><h5>".$orderEntry['name']."</h5><p class='order-entry-price'>".number_format( (floatval($orderEntry['price'])*intval($orderEntry['quantity'])), 2, '.', '' )." zł</p>
                                 </section>";
                         }
 
                         echo 
                             "<section class='order-entry-summary'>
-                                <p>Suma: <span>".cartSum($orderEntries)."</span> zł</p>
+                                <p>Suma: ".cartSum($orderEntries)." zł</p>
                             </section></a>"
                     ?>
                     

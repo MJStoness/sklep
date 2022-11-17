@@ -57,6 +57,22 @@ input.showcase {
     background-color: rgba(0,0,0,0);
 }
 
+.passwd-container {
+    position: relative;
+    width: 100%;
+}
+.passwd-container i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--light-bg);
+    padding: 6px;
+}
+.passwd-container i:hover {
+    cursor: pointer;
+}
+
 label.highlighted {
     color:  white;
 }
@@ -181,7 +197,7 @@ header {
     display: flex;
     justify-content: left;
     align-items: center;
-    width: 100%;
+    width: calc(100% - 20px);
     height: 80px;
     background-color: var(--light-bg);
     border-radius: 0 0 20px 20px;
@@ -443,8 +459,16 @@ a.menu-bold {
     transition: .1s;
 }
 
+.dropdown-content {
+    transform-origin: top;
+    overflow: hidden;
+    transition: .2s ease-out;
+
+}
 .dropdown-content.hidden {
-    display: none;
+    /* display: none; */
+    transform: scaleY(0);
+    height: 0;
 }
 
 button.hidden {
@@ -617,21 +641,6 @@ input[type='submit'].big-btn:active {
 
     transition: .1s;
 }
-
-/* @keyframes cart-press {
-    25% {
-        background-color: rgb(212, 54, 6);
-    }
-    50% {
-        background-color: rgb(65, 221, 18);
-    }
-    75% {
-        background-color: rgb(14, 190, 221);
-    }
-    100% {
-        background-color: var(--main);
-    }
-} */
 
 @keyframes cart-press {
     33% {

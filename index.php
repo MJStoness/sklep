@@ -78,9 +78,16 @@
     <title>Sklep</title>
     <link rel="stylesheet" href="css/main.css" >
     <link rel="stylesheet" href="css/hamburger.css" >
+    <link rel="stylesheet" href="css/popup.css" >
     <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+
+    <!-- <div class="popup red">
+        This is a popup!
+    </div> -->
+
     <div class="cover">&nbsp;</div>
 
     <div class='hamburger-container scroll-minimize'>
@@ -147,13 +154,13 @@
                 <input type="submit" value="Filtruj">
             </div>
         </form>
-        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
+        <a href="cart" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
-                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
+                echo "<a href='user' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
+                echo "<a href='login' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>
@@ -169,7 +176,7 @@
             foreach ( $products as $product ) {
                 echo
                     "<section class='product-container'>
-                        <a href='productPage.php?product_id=".$product['product_id']."'>
+                        <a href='productPage?product_id=".$product['product_id']."'>
                             <img src='".$product['img_path']."' class='product-img'>
                             <div class='product-description'>
                                 <span>
@@ -188,8 +195,9 @@
         ?>
     
     </main>
-
+    
 </body>
+<script src="scripts/popup.js"></script>
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
 <script src="scripts/addtocart.js"></script>

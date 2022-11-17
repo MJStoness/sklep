@@ -51,20 +51,21 @@
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/display.css" >
     <link rel="stylesheet" href="css/secondary.css" >
+    <link rel="stylesheet" href="css/popup.css" >
     <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
-        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
+        <a href="." class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
-                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
+                echo "<a href='user' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
+                echo "<a href='login' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>
@@ -93,19 +94,20 @@
                             <h5 class='display-title'>".$displayedProduct['name']."</h5>
                             <h5 class='display-price'>".$displayedProduct['price']." PLN</h5>
                         </div>
-                        <button class='cart-btn' value='".$product['product_id']."'>
+                        <button class='cart-btn' value='".$displayedProduct['product_id']."'>
                             <i class='fa-solid fa-cart-shopping fa-xl'></i>
                         </button>
                     </section>
                     <section class='display-desc-container'>
                         <p class='display-desc'>".$displayedProduct['description']."</p>
                     </section>
-                </section>"
+                </section>";
         ?>
 
     </main>
 
 </body>
+<script src="scripts/popup.js"></script>
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
 <script src="scripts/addtocart.js"></script>

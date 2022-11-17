@@ -1,7 +1,3 @@
-/* table,tr,td {
-    outline: 1px solid red;
-} */
-
 main {
     margin-top: 110px !important;
 }
@@ -20,28 +16,30 @@ tr.error td {
 }
 
 .order-entry {
-    background-color: rgb(240, 240, 240);
+    background-color: var(--light-bg);
+    border-radius: 10px;
     display: flex;    
     margin-bottom: 10px;
     padding: 7px;
     width: calc( 100% - 14px );
 }
 .order-entry h5 {
-    margin-right: 20px;
+    margin-left: 10px;
+    font-size: 15px;
 }
 
 .order-entry-quantity {
-    font-family: var(--num-font);
+    font-weight: bold;
+    color: var(--light-font);
     font-size: 15px;
     margin-right: 5px;
 }
 
 .order-entry-price {
-    margin-left: auto;
-}
-.order-entry-price span {
-    font-family: var(--num-font);
+    font-weight: bold;
+    color: var(--light-font);
     font-size: 15px;
+    margin-left: auto;
 }
 
 .order-entry-summary {

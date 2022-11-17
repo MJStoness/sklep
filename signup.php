@@ -60,7 +60,7 @@
                         throw new Exception();
                     }
 
-                    header("Location: signedup.php");
+                    header("Location: signedup");
                 }
             }
         }
@@ -86,14 +86,14 @@
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
-        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
+        <a href="." class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
-                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
+                echo "<a href='user' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
+                echo "<a href='login' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>
@@ -140,11 +140,11 @@
             </p>
 
             <label class='sans <?php if ( isset($passwdError) ) echo 'error'; ?>' for='form-passwd' data-highlight='yes'>Hasło: </label>
-            <input type='password' class='sans <?php if ( isset($passwdError) ) echo 'error'; ?>' id='form-passwd' data-highlight='yes' name='passwd'
+            <span class='passwd-container'><input type='password' class='sans <?php if ( isset($passwdError) ) echo 'error'; ?>' id='form-passwd' data-highlight='yes' name='passwd'
                 <?php
                     if ( isset($_POST['passwd']) ) echo "value='".$_POST['passwd']."'";
                 ?>
-            >
+            ><i class="fa-solid fa-eye-low-vision" data-toggled="untoggled"></i></span>
             <p class='error'>
                 <?php
                     if ( isset($passwdError) ) echo $passwdError;
@@ -153,11 +153,11 @@
             </p>
 
             <label class='sans <?php if ( isset($repasswdError) ) echo 'error'; ?>' for='form-repasswd' data-highlight='yes'>Powtórz hasło: </label>
-            <input type='password' class='sans <?php if ( isset($repasswdError) ) echo 'error'; ?>' id='form-repasswd' data-highlight='yes' name='repasswd'
+            <span class='passwd-container'><input type='password' class='sans <?php if ( isset($repasswdError) ) echo 'error'; ?>' id='form-repasswd' data-highlight='yes' name='repasswd'
                 <?php
                     if ( isset($_POST['repasswd']) ) echo "value='".$_POST['repasswd']."'";
                 ?>
-            >
+            ><i class="fa-solid fa-eye-low-vision" data-toggled="untoggled"></i></span>
             <p class='error'>
                 <?php
                     if ( isset($repasswdError) ) echo $repasswdError;
@@ -167,10 +167,11 @@
 
             <input type="submit" value="Zarejestruj" name='submit' class='big-btn'>
         </form>
-        <a href="login.php" class='a-btn'>Zaloguj się</a>
+        <a href="login" class='a-btn'>Zaloguj się</a>
     </main>
 
 </body>
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
+<script src="scripts/passwdControll.js"></script>
 </html>

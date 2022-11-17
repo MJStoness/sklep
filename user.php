@@ -2,7 +2,7 @@
 
     session_start();
 
-    if ( !isset($_SESSION['loggedin_id']) ) header("Location: login.php");
+    if ( !isset($_SESSION['loggedin_id']) ) header("Location: login");
     function zmiana() {
         if ( isset($_GET['zmiana']) ) return true;
         else return false;
@@ -86,9 +86,9 @@
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
-        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
-        <a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>
+        <a href="." class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
+        <a href='logout' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>
 
     </div>
 

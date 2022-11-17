@@ -95,13 +95,13 @@
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="." class="menu-bold"><i class="fa-solid fa-house"></i></a>
         <?php
             if ( isset($_SESSION['loggedin_id']) ) {
-                echo "<a href='user.php' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
-                echo "<a href='logout.php' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
+                echo "<a href='user' class='menu-bold'><i class='fa-solid fa-user'></i></a>";
+                echo "<a href='logout' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>";
             } else {
-                echo "<a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
+                echo "<a href='login' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
             
         ?>
@@ -132,7 +132,7 @@
                 foreach ( $cartEntries as $cartEntry ) {
                     echo 
                         "<section class='cart-entry'>
-                            <a href='productPage.php?product_id=".$cartEntry['product_id']."'>
+                            <a href='productPage?product_id=".$cartEntry['product_id']."'>
                                 <img src='".$cartEntry['img_path']."' class='cart-img'>
                                 <div class='cart-entry-details'>
                                     <h5 class='cart-entry-title'>".$cartEntry['name']."</h5>
@@ -167,7 +167,7 @@
                         </button>
                     
                         <section class='order-container'>
-                            <form method='POST' action='order.php?cart_id=".$cartId."'>
+                            <form method='POST' action='order?cart_id=".$cartId."'>
                                 <input type='submit' value='ZŁÓŻ ZAMÓWIENIE' class='big-btn'>
                                 <input type='hidden' name='token' value='true'>
                             </form>

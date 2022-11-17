@@ -8,7 +8,7 @@
     error_reporting(0);
 
     if ( isset($_SESSION['loggedin_id']) ) {
-        header("Location: user.php");
+        header("Location: user");
     }
 
     try {
@@ -26,7 +26,7 @@
 
                 if ( !isset($loginError)&&!isset($passwdError) ) {
                     $_SESSION['loggedin_id'] = $userRow['user_id'];
-                    header('Location: index.php');
+                    header('Location: .');
                 }
             }
         }
@@ -52,9 +52,9 @@
     <div class="cover">&nbsp;</div>
 
     <div class="menu-container hidden">
-        <a href="index.php" class="menu-bold"><i class="fa-solid fa-house"></i></a>
-        <a href="cart.php" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
-        <a href='login.php' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>
+        <a href="." class="menu-bold"><i class="fa-solid fa-house"></i></a>
+        <a href="cart" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
+        <a href='login' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>
     </div>
 
     <div class='hamburger-container scroll-minimize'>
@@ -85,11 +85,11 @@
             </p>
             
             <label class='sans <?php if ( isset($passwdError) ) echo 'error'; ?>' for='form-passwd' data-highlight='yes'>Hasło: </label>
-            <input type='password' class='sans <?php if ( isset($passwdError) ) echo 'error'; ?>' id='form-passwd' data-highlight='yes' name='passwd'
+            <span class='passwd-container'><input type='password' class='sans <?php if ( isset($passwdError) ) echo 'error'; ?>' id='form-passwd' data-highlight='yes' name='passwd'
                 <?php
                     if ( isset($_POST['passwd']) ) echo "value='".$_POST['passwd']."'";
                 ?>
-            >
+            ><i class="fa-solid fa-eye-low-vision" data-toggled="untoggled"></i></span>
             <p class='error'>
                 <?php
                     if ( isset($passwdError) ) echo $passwdError;
@@ -99,10 +99,11 @@
 
             <input type="submit" value="Zaloguj" name='submit' class='big-btn'>
         </form>
-        <a href="signup.php" class='a-btn'>Zarejestruj się</a>
+        <a href="signup" class='a-btn'>Zarejestruj się</a>
     </main>
 
 </body>
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
+<script src="scripts/passwdControll.js"></script>
 </html>
