@@ -8,13 +8,13 @@ function positionPopups(array) {
             totalOffset += array[j].offsetHeight + POPUP_OFFSET;
         }
         totalOffset += POPUP_OFFSET;
-        console.log(totalOffset);
         array[i].style.top = totalOffset + "px";
         totalOffset = 0;
     }
 }
 
 const POPUP_APPEAR_TIME = 0.4; //in seconds
+
 class Popup {
     constructor(message, color, duration) {
         this.message = message;
