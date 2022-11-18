@@ -518,6 +518,7 @@ button.hidden {
 .product-title {
     font-size: 25px;
     font-weight: bold;
+    flex-shrink: 2;
 }
 .product-category {
     font-size: 15px;
@@ -530,6 +531,7 @@ button.hidden {
     margin-left: auto;
     color: var(--dark-font);
     font-style: italic;
+    min-width: fit-content;
 }
 .product-img {
     height: 80vw;
@@ -551,8 +553,8 @@ button.hidden {
     border: none;
     margin-top: 10px;
     transition: .1s;
-    width: 70px;
-    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
     border-radius: 70px;
     border: 10px solid var(--dark-bg);
     position: absolute;

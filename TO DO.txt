@@ -3,7 +3,8 @@
 - wyizolować validacje formularzy do funkcji
 - usprawnić walidacje wykonania zapytania
 - płatności
-- realtime koszyk
-- smoooooooth the dropdown's animation
-- fix title spacing in productPage.php (walter's blue special)
+- smoooooooth out the dropdown's animation
 - filter button should light up on change
+- ads B)
+- cobine images with products in SQL
+- photo gallery

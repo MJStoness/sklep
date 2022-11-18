@@ -83,11 +83,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-
-    <!-- <div class="popup red">
-        This is a popup!
-    </div> -->
-
     <div class="cover">&nbsp;</div>
 
     <div class='hamburger-container scroll-minimize'>
@@ -98,7 +93,7 @@
     </div>
 
     <div class="menu-container hidden">
-        <form action="#" method="POST">
+        <form action="#" method="POST" id="category-from">
             <div class="menu-header">
                 <label for="kategoria" class="clean-label"><p class="menu-bold">Kategoria:</p></label>
                 <div class="dropdown-container">

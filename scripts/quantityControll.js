@@ -8,6 +8,12 @@ UPBUTTONS.forEach( (button,index) => {
     button.onclick = function () {
         if ( parseInt(QUANTITYFIELDS[index].value) < parseInt(QUANTITYFIELDS[index].max) ) { 
             QUANTITYFIELDS[index].value = parseInt(QUANTITYFIELDS[index].value) + STEP;
+
+            let price = button.parentElement.parentElement.getAttribute("data-price");
+            let priceElement = button.parentElement.parentElement.querySelector(".cart-entry-price");
+            let newPrice = parseFloat(price) * QUANTITYFIELDS[index].value;
+            priceElement.innerText = newPrice.toFixed(2) + " zł";
+
             const xhrAdd = new XMLHttpRequest();
             xhrAdd.open("POST","php_scripts/quantityCartControll.php");
             xhrAdd.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -20,6 +26,12 @@ DWBUTTONS.forEach( (button,index) => {
     button.onclick = function () {
         if ( parseInt(QUANTITYFIELDS[index].value) > parseInt(QUANTITYFIELDS[index].min) ) { 
             QUANTITYFIELDS[index].value = parseInt(QUANTITYFIELDS[index].value) - STEP;
+
+            let price = button.parentElement.parentElement.getAttribute("data-price");
+            let priceElement = button.parentElement.parentElement.querySelector(".cart-entry-price");
+            let newPrice = parseFloat(price) * QUANTITYFIELDS[index].value;
+            priceElement.innerText = newPrice.toFixed(2) + " zł";
+
             const xhrAdd = new XMLHttpRequest();
             xhrAdd.open("POST","php_scripts/quantityCartControll.php");
             xhrAdd.setRequestHeader("Content-type","application/x-www-form-urlencoded");

@@ -131,12 +131,12 @@
                 echo "<section class='cart-entry-container'>";
                 foreach ( $cartEntries as $cartEntry ) {
                     echo 
-                        "<section class='cart-entry'>
+                        "<section class='cart-entry' data-price='".$cartEntry['price']."'>
                             <a href='productPage?product_id=".$cartEntry['product_id']."'>
                                 <img src='".$cartEntry['img_path']."' class='cart-img'>
                                 <div class='cart-entry-details'>
                                     <h5 class='cart-entry-title'>".$cartEntry['name']."</h5>
-                                    <p class='cart-entry-price'>".$cartEntry['price']." zł</p>
+                                    <p class='cart-entry-price'>".$cartEntry['price']*$cartEntry['quantity']." zł</p>
                                 </div>
                             </a>
                             <div class='cart-entry-quantity'>
