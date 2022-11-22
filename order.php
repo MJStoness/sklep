@@ -143,6 +143,9 @@
             } else {
                 echo "<a href='login' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
+            if ( isset($_SESSION['admin']) && $_SESSION['admin'] == true ) {
+                echo "<a href='A_adminPanel' class='menu-bold admin'><i class='fa-solid fa-hammer'></i></a>";
+            }
             
         ?>
     </div>

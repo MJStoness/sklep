@@ -117,6 +117,14 @@ label.highlighted {
     width: 100%;
 }
 
+.admin, .admin i {
+    color: var(--error);
+}
+.editProduct {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
 /*======================================== ERRORS */
 p.error {
     color: var(--error);
@@ -351,6 +359,56 @@ label:has(.custom-checkbox input:checked) {
 label:has(.custom-radio input:checked) {
     color: #fff;
 }
+
+/* --- */
+
+.input-file-container {
+    height: 120px;
+    width: 120px;
+    outline: 1px solid var(--light-font);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-bg);
+  }
+  .input-file-container:hover {
+    cursor: pointer;
+  }
+  .input-file-container label {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .input-file-container input {
+    display: none;
+  }
+  
+  .input-file-container label p {
+    padding: 0 10px 0 10px;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--light-font);
+    transform: translateY(15px);
+  }
+  .input-file-container label i {
+    font-size: 30px;
+  }
+  
+  .add-photo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .add-photo-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 18px;
+  }
 
 
 /* ================================================= */

@@ -1,0 +1,20 @@
+.admin-opt-container {
+    margin-top: 30px;
+    width: min(70vw, 400px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.admin-opt {
+    width: 100%;
+    padding: 20px;
+    background-color: var(--light-bg);
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 20px
+}
+.admin-opt i {
+    margin-right: 15px;
+}

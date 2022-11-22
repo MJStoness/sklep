@@ -1,26 +1,24 @@
 <?php
     session_start();
 
-    /* if ( !isset($_POST['token']) ) {
-        header("Location: cart.php");
-    } */
-
     require_once "config.php";
-
+    
     mysqli_report(MYSQLI_REPORT_STRICT);
     error_reporting(0);
 
-    try {
+    /* try {
         $connection = new mysqli($servername,$username,$passwd,$dbname);
-        
+
         if ( $connection->connect_errno ) {
             throw new Exception();
         } else {
-            
-        }
-    } catch ( Exception $e ) {
+
+
+            $connection->close();
+        } 
+    } catch( Exception $e ) {
         echo "SRAKA";
-    }
+    } */
 
 ?>
 
@@ -30,10 +28,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sklep - Zamówienie</title>
+    <title>Sklep - Logowanie</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
-    <link rel="stylesheet" href="css/order.css" >
+    <link rel="stylesheet" href="css/display.css" >
     <link rel="stylesheet" href="css/secondary.css" >
+    <link rel="stylesheet" href="css/popup.css" >
+    <link rel="stylesheet" href="css/admin.css" >
     <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -49,9 +49,6 @@
             } else {
                 echo "<a href='login' class='menu-bold'><i class='fa-solid fa-right-to-bracket'></i></a>";
             }
-            if ( isset($_SESSION['admin']) && $_SESSION['admin'] == true ) {
-                echo "<a href='A_adminPanel' class='menu-bold admin'><i class='fa-solid fa-hammer'></i></a>";
-            }
             
         ?>
     </div>
@@ -64,17 +61,27 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh Shop</h1>
+        <h1 class="scroll-minimize">Waltuh</h1>
     </header>
 
     <main>
 
-        <h3>ZAMÓWIENIE ZOSTAŁO ZŁOŻONE</h3>
-    
+        <h3 class='title admin'>PANEL ADMINISTRACYJNY</h3>
+
+        <section class="admin-opt-container">
+            <a href="A_addProduct" class="admin-opt"><i class="fa-solid fa-plus"></i>Dodaj produkt</a>
+            <a href="A_editProduct" class="admin-opt"><i class="fa-solid fa-pen-to-square"></i>Edytuj produkty</a>
+            <a href="A_manageCategories" class="admin-opt"><i class="fa-solid fa-list"></i>Zarządzaj kategoriami</a>   
+        </section>
+        <?php
+
+        ?>
+
     </main>
 
 </body>
+<script src="scripts/popup.js"></script>
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
-<script src="scripts/createToken.js"></script>
+<script src="scripts/addtocart.js"></script>
 </html>

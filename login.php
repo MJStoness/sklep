@@ -25,6 +25,11 @@
                 if ( !password_verify($_POST['passwd'], $userRow['passwd']) ) $passwdError = 'Nieprawidłowe hasło!';
 
                 if ( !isset($loginError)&&!isset($passwdError) ) {
+                    if ( $userRow['admin'] == 1 ) { 
+                        $_SESSION['admin'] = true;
+                    } else { 
+                        unset($_SESSION['admin']); 
+                    }
                     $_SESSION['loggedin_id'] = $userRow['user_id'];
                     header('Location: .');
                 }

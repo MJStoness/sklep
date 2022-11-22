@@ -1,24 +1,24 @@
 <?php
     session_start();
 
-    /* if ( !isset($_POST['token']) ) {
-        header("Location: cart.php");
-    } */
-
     require_once "config.php";
-
+    
     mysqli_report(MYSQLI_REPORT_STRICT);
     error_reporting(0);
 
     try {
         $connection = new mysqli($servername,$username,$passwd,$dbname);
-        
+
         if ( $connection->connect_errno ) {
             throw new Exception();
         } else {
-            
-        }
-    } catch ( Exception $e ) {
+            if ( isset($_POST['images']) ) {
+                print_r($_POST['images']);
+            }
+
+            $connection->close();
+        } 
+    } catch( Exception $e ) {
         echo "SRAKA";
     }
 
@@ -30,10 +30,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sklep - Zamówienie</title>
+    <title>Sklep - Logowanie</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
-    <link rel="stylesheet" href="css/order.css" >
+    <link rel="stylesheet" href="css/display.css" >
     <link rel="stylesheet" href="css/secondary.css" >
+    <link rel="stylesheet" href="css/popup.css" >
     <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -64,17 +65,30 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh Shop</h1>
+        <h1 class="scroll-minimize">Waltuh</h1>
     </header>
 
     <main>
 
-        <h3>ZAMÓWIENIE ZOSTAŁO ZŁOŻONE</h3>
-    
+        <form action="" method="POST" class="product-add-container">
+        <div class="add-photo-container">
+            <div class="input-file-container">
+                <label for="addPhoto">
+                <i class="fa-solid fa-upload"></i>
+                <p>Przeciagnij lub upusc</p>
+                </label>
+                <input type="file" name="images[]" id="addPhoto" multiple>
+            </div>
+            <p class="add-photo-title">Dodaj<br>zdjecie</p>
+        </div>
+            <input type="submit">
+        </form>
+
     </main>
 
 </body>
+<script src="scripts/popup.js"></script>
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
-<script src="scripts/createToken.js"></script>
+<script src="scripts/addtocart.js"></script>
 </html>

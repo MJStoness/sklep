@@ -89,6 +89,11 @@
         <a href="." class="menu-bold"><i class="fa-solid fa-house"></i></a>
         <a href="cart" class="menu-bold"><i class='fa-solid fa-cart-shopping'></i></a>
         <a href='logout' class='menu-bold'><i class='fa-solid fa-right-from-bracket'></i></a>
+        <?php
+            if ( isset($_SESSION['admin']) && $_SESSION['admin'] == true ) {
+                echo "<a href='A_adminPanel' class='menu-bold admin'><i class='fa-solid fa-hammer'></i></a>";
+            }
+        ?>
 
     </div>
 
