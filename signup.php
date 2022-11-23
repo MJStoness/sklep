@@ -24,8 +24,8 @@
                 unset($response);
 
                 if ( empty($_POST['login']) ) $loginError = EMPTY_FIELD_ERROR;
-                else if ( strlen($_POST['login']) <= 3 ) $loginError = 'Login musi byc dłuższy niż 3 litery!';
-                else if ( strlen($_POST['login']) >= 10 ) $loginError = 'Login nie może byc dłuższy niż 10 liter!';
+                else if ( strlen($_POST['login']) <= 2 ) $loginError = 'Login musi byc dłuższy niż 2 litery!';
+                else if ( strlen($_POST['login']) >= 13 ) $loginError = 'Login nie może byc dłuższy niż 13 liter!';
                 else if ( !preg_match($login_reg, $_POST['login']) ) $loginError = 'Dozwolone tylko litey, cyfry i znak \' _ \'';
                 $response = $connection->query("SELECT * FROM user WHERE `login`='".$_POST['login']."'");
                 if ( $response->fetch_row() ) $loginError = 'Konto o podanym loginie już istnieje!';
@@ -34,7 +34,8 @@
                 if ( empty($_POST['passwd']) ) $passwdError = EMPTY_FIELD_ERROR;
                 else if ( strlen($_POST['passwd']) <= 4 ) $passwdError = 'Hasło musi byc dłuższe niż 4 znaki!';
                 else if ( strlen($_POST['passwd']) >= 25 ) $passwdError = 'Hasło musi byc krótsze niż 25 znaków!';
-                else if ( !preg_match($passwd_reg, $_POST['passwd']) ) $passwdError = 'Hasło musi zawierac przynajmniej jedną małą i dużą literę oraz znak specjalny!';
+                else if ( !preg_match($passwd_reg, $_POST['passwd']) ) $passwdError = 'Hasło musi zawierać przynajmniej jedną małą i dużą literę oraz znak specjalny lub cyfrę!';
+                //$passwdError = 'Hasło musi zawierać przynajmniej:<ul><li>małą literę</li><li>dużą literę</li><li>znak specjalny lub cyfrę</li></ul>';
 
                 if ( empty($_POST['repasswd']) ) $repasswdError = EMPTY_FIELD_ERROR;
                 else if ( $_POST['passwd'] != $_POST['repasswd'] ) $repasswdError = 'Hasła się różnią!';

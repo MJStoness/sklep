@@ -6,21 +6,8 @@
     mysqli_report(MYSQLI_REPORT_STRICT);
     error_reporting(0);
 
-    try {
-        $connection = new mysqli($servername,$username,$passwd,$dbname);
+    
 
-        if ( $connection->connect_errno ) {
-            throw new Exception();
-        } else {
-            if ( isset($_POST['images']) ) {
-                print_r($_POST['images']);
-            }
-
-            $connection->close();
-        } 
-    } catch( Exception $e ) {
-        echo "SRAKA";
-    }
 
 ?>
 
@@ -32,7 +19,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep - Logowanie</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
-    <link rel="stylesheet" href="css/display.css" >
     <link rel="stylesheet" href="css/secondary.css" >
     <link rel="stylesheet" href="css/popup.css" >
     <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
@@ -69,21 +55,17 @@
     </header>
 
     <main>
-
-
-        <div class="add-photo-container">
-            <div class="input-file-container">
-                <label for="addPhoto">
-                <i class="fa-solid fa-upload"></i>
-                <p>Przeciagnij lub upusc</p>
-                </label>
-                <input type="file" name="images[]" id="addPhoto" multiple>
-            </div>
-            <p class="add-photo-title">Dodaj<br>zdjecie</p>
-                <form action="" method="POST" class="product-add-container">
-        </div>
-            <input type="submit">
-        </form>
+        
+        <h3 class="title">Wystąpił błąd!</h3>
+        <p class="error-desc">
+            <?php
+                if ( isset($_SESSION['errorMessage']) ) {
+                    echo $_SESSION['errorMessage'];
+                    unset($_SESSION['errorMessage']);
+                } else echo "Mamy problemy z serwerem!";
+            ?>
+        </p>
+        <p>Przepraszamy za utrudnienia</p>
 
     </main>
 

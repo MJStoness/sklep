@@ -19,7 +19,7 @@
         } else {
             if ( isset($_POST['submit']) ) {
                 if ( empty($_POST['login']) ) $loginError = EMPTY_FIELD_ERROR;
-                $response = $connection->query("SELECT * FROM user WHERE `login`='".$_POST['login']."' OR `email`='".$_POST['login']."'");
+                $response = $connection->query("SELECT * FROM user WHERE `login`='".mysqli_real_escape_string($connection, htmlentities($_POST['login'], ENT_QUOTES, "UTF-8"))."' OR `email`='".mysqli_real_escape_string($connection, htmlentities($_POST['login'], ENT_QUOTES, "UTF-8"))."'");
                 if ( !$userRow =$response->fetch_assoc() ) $loginError = 'Konto o podanym loginie lub emailu nie istnieje!';
 
                 if ( !password_verify($_POST['passwd'], $userRow['passwd']) ) $passwdError = 'Nieprawidłowe hasło!';

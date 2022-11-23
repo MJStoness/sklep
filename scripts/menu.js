@@ -27,7 +27,17 @@ DROPDOWN_TOGGLES.forEach( (element,index) => {
     FILTER_BTN.style.color = "#fff";
 } */
 
-FILE_DROP_AREA.addEventListener("drop", (event) => {
+FILE_DROP_AREA.ondragover = () => {
+    console.log("over");
+}
+
+FILE_DROP_AREA.onclick = () => {
+    console.log("click");
+}
+
+FILE_DROP_AREA.ondrop = (event) => {
+    console.log(event);
+
     event.preventDefault();
     console.log("dropped");
-});
+}

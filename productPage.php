@@ -33,7 +33,8 @@
             $connection->close();
         } 
     } catch( Exception $e ) {
-        echo "SRAKA";
+        $_SESSION['errorMessage'] = "Nie znaleźliśmy produktu!";
+        header("Location: errorPage");
     }
 
     #TO DO:

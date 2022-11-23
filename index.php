@@ -59,7 +59,7 @@
         }
 
     } catch ( Exception $e ) {
-        echo "SRAKA";
+        header("Location: errorPage");
     }
     
 

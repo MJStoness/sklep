@@ -5,6 +5,9 @@
 
     $connection = new mysqli($servername,$username,$passwd,$dbname);
 
+    mysqli_report(MYSQLI_REPORT_STRICT);
+    error_reporting(0);
+
     try {
         if ( $connection->connect_errno ) {
             throw new Exception();
