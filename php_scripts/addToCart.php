@@ -41,12 +41,12 @@
                 $query = "SELECT * FROM cart_entry WHERE cart_id=".$cartId." AND product_id=".$_POST['product_id'];
                 if ( $response = $connection->query($query) ) {
                     if ($response->fetch_row()) {
-                        $popup = array("message" => "Produkt jest już w koszyku!", "color" => "blue");
+                        $popup = array("message" => "Produkt jest już w koszyku!", "color" => "blue", "success" => "no");
                         echo json_encode($popup);
                     } else {
                         $query = "INSERT INTO cart_entry (`cart_id`, `product_id`, `quantity`) VALUES (".$cartId.", ".$_POST['product_id'].", 1)";
                         if ( $connection->query($query) ) {
-                            $popup = array("message" => "Dodano do koszyka!", "color" => "green");
+                            $popup = array("message" => "Dodano do koszyka!", "color" => "green", "success" => "yes");
                             echo json_encode($popup);
                         } else {
                             throw new Exception();
@@ -66,12 +66,12 @@
                 $query = "SELECT * FROM cart_entry WHERE cart_id=".$cartId." AND product_id=".$_POST['product_id'];
                 if ( $response = $connection->query($query) ) {
                     if ($response->fetch_row()) {
-                        $popup = array("message" => "Produkt jest już w koszyku!", "color" => "blue");
+                        $popup = array("message" => "Produkt jest już w koszyku!", "color" => "blue", "success" => "no");
                         echo json_encode($popup);
                     } else {
                         $query = "INSERT INTO cart_entry (`cart_id`, `product_id`, `quantity`) VALUES (".$cartId.", ".$_POST['product_id'].", 1)";
                         if ( $connection->query($query) ) {
-                            $popup = array("message" => "Dodano do koszyka!", "color" => "green");
+                            $popup = array("message" => "Dodano do koszyka!", "color" => "green", "success" => "yes");
                             echo json_encode($popup);
                         } else {
                             throw new Exception();
@@ -85,6 +85,6 @@
             $connection->close();
         }
     } catch ( Exception $e ) {
-        $popup = array("message" => "Dodawanie nie powiodło się!", "color" => "red");
+        $popup = array("message" => "Dodawanie nie powiodło się!", "color" => "red", "success" => "no");
         echo json_encode($popup);
     }

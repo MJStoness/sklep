@@ -42,7 +42,7 @@
 
                 if ( empty($_POST['login']) ) $loginError = EMPTY_FIELD_ERROR;
                 else if ( strlen($_POST['login']) <= 3 ) $loginError = 'Login musi byc dłuższy niż 3 litery!';
-                else if ( strlen($_POST['login']) >= 10 ) $loginError = 'Login nie może byc dłuższy niż 10 liter!';
+                else if ( strlen($_POST['login']) >= 13 ) $loginError = 'Login nie może byc dłuższy niż 13 liter!';
                 else if ( !preg_match($login_reg, $_POST['login']) ) $loginError = 'Dozwolone tylko litey, cyfry i znak \' _ \'';
                 $response = $connection->query("SELECT login FROM user WHERE `login`='".$_POST['login']."'");
                 $fetchedLogin = $response->fetch_row()[0];

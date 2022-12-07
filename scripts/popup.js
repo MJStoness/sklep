@@ -39,7 +39,21 @@ class Popup {
     }
 }
 
-function pop( message, color, duration ) {
+function pop ( message, color, duration ) {
     let popup = new Popup(message, color, duration);
     popup.pop();
+}
+
+function animateAddButtonSuccess ( button ) {
+    button.style.animation = "cartAddSuccess 0.4s linear 0s 1";
+    setTimeout(() => {
+        button.style.animation = "";
+    }, 400);
+}
+
+function animateAddButtonFailure ( button ) {
+    button.style.animation = "cartAddFailure 0.4s linear 0s 1";
+    setTimeout(() => {
+        button.style.animation = "";
+    }, 400);
 }
