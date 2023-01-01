@@ -1,3 +1,7 @@
+form {
+    margin-bottom: 20px;
+}
+
 .admin-opt-container {
     margin-top: 30px;
     width: min(70vw, 400px);
@@ -13,8 +17,56 @@
     background-color: var(--light-bg);
     font-size: 20px;
     font-weight: bold;
-    border-radius: 20px
+    border-radius: 20px;
 }
 .admin-opt i {
     margin-right: 15px;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.form-cell {
+    margin-top: 20px;
+}
+.form-cell input, .form-cell select, .form-cell .custom-number-input, .form-cell textarea {
+    margin-top: 10px;
+}
+.form-cell input[type="number"] {
+    margin-top: 0;
+}
+.form-cell + a {
+    margin-top: 10px;
+    float: right;
+    color: var(--light-font);
+    font-weight: bold;
+}
+.form-cell + a i {
+    color: var(--light-font);
+}
+
+.add-price-container {
+    display: flex;
+}
+.add-price-container h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--light-font);
+    text-align: left;
+    margin-left: 5px;
+    transform: translateY(12px);
+}
+.add-price-container h2:first-of-type {
+    margin-right: 10px;
+}
+
+.add-submit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    gap: 20px;
 }

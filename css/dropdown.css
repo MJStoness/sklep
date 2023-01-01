@@ -1,0 +1,33 @@
+.dropdowns-container {
+    width: fit-content;
+}
+
+.xdropdown-header {
+    display: flex;
+}
+.xdropdown-header label {
+    margin: 0;
+}
+
+.xdropdown-content {
+    padding-left: 10px;
+    transition: .1s ease-out;
+    transform-origin: top;
+}
+.xdropdown-content label {
+    display: flex;
+}
+.xdropdown-content label .custom-checkbox, .xdropdown-content label .custom-radio {
+    margin-right: 10px;
+}
+
+.xdropdown-container {
+    background-color: var(--dark-bg);
+    padding: 15px;
+    border-radius: 15px;
+    overflow: hidden;
+    height: fit-content;
+    transition: .1s ease-out;
+    margin-top: 20px;
+    width: calc(100% - 30px);
+}

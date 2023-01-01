@@ -57,6 +57,64 @@ input.showcase {
     background-color: rgba(0,0,0,0);
 }
 
+select {
+    background-color: var(--light-bg);
+    width: 100%;
+    padding: 10px;
+    border: none;
+    outline: 1px solid var(--light-font);
+    border-radius: 5px;
+    appearance: none;
+}
+
+textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: none;
+    outline: 1px solid var(--light-font);
+    border-radius: 5px;
+    background-color: var(--light-bg);
+    aspect-ratio: 3/1;
+}
+
+/* ================================== CUSTOM NUMBER INPUT */
+.custom-number-input input::-webkit-outer-spin-button,
+.custom-number-input input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-number-input input {
+    -moz-appearance: textfield;
+    background-color: transparent;
+    border: none;
+    width: calc(100% - 40px);
+    text-align: center;
+    padding: 10px;
+    font-size: 17px;
+}
+
+.custom-number-input {
+    width: 100px;
+    background-color: var(--light-bg);
+    border-radius: 5px;
+    outline: 1px solid var(--light-font);
+    display: flex;
+}
+
+
+.custom-number-input .custom-number-input-controlls div {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.custom-number-input .custom-number-input-controlls div i {
+    font-size: 13px;
+    color: var(--light-font)
+}
+/* ====================================================== */
+
 .passwd-container {
     position: relative;
     width: 100%;
@@ -371,45 +429,81 @@ label:has(.custom-radio input:checked) {
     justify-content: center;
     align-items: center;
     background-color: var(--light-bg);
-  }
-  .input-file-container:hover {
+    transition: .1s;
+}
+.input-file-container:hover {
     cursor: pointer;
-  }
-  .input-file-container label {
+}
+.input-file-container label {
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  .input-file-container input {
+}
+.input-file-container input {
     display: none;
-  }
+}
   
-  .input-file-container label p {
+.input-file-container label p {
     padding: 0 10px 0 10px;
     font-size: 10px;
     font-weight: bold;
     text-align: center;
     color: var(--light-font);
     transform: translateY(15px);
-  }
-  .input-file-container label i {
+    transition: .1s;
+}
+.input-file-container label i {
     font-size: 30px;
-  }
+    color: var(--light-font);
+    transition: .1s;
+}
   
-  .add-photo-container {
+.add-photo-container {
     display: flex;
     align-items: center;
-  }
+}
   
-  .add-photo-title {
+.add-photo-title {
     font-size: 30px;
     font-weight: bold;
     margin-left: 18px;
-  }
+}
 
+.input-file-container.highlighted label p {
+    color: #fff;
+}
+.input-file-container.highlighted label i {
+    color: #fff;
+    transform: translateY(-10px);
+}
+.input-file-container.highlighted {
+    outline-color: #fff;
+}
+
+.file-preview {
+    background-color: var(--light-bg);
+    padding: 10px 0 10px 10px;
+    border-radius: 20px;
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 243px;
+    margin-top: 10px;
+    transition: .1s;
+}
+.file-preview:empty {
+    display: none;
+}
+
+.file-preview img {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+}
 
 /* ================================================= */
 
@@ -487,11 +581,11 @@ a.menu-bold {
     gap: 10px;
 }
 
-.dropdown-container {
+/* .dropdown-container {
     display: grid;
     height: 34px;
     width: auto;
-}
+} */
 .dropdown-icon, .dropdown-checkbox {
     grid-column: 1;
     grid-row: 1;
@@ -506,7 +600,7 @@ a.menu-bold {
     filter: invert(1);
     transition: .1s;
 }
-.dropdown-checkbox {
+/* .dropdown-checkbox {
     opacity: 0;
 }
 .dropdown-checkbox:hover {
@@ -524,10 +618,10 @@ a.menu-bold {
 
 }
 .dropdown-content.hidden {
-    /* display: none; */
+    /* display: none; /
     transform: scaleY(0);
     height: 0;
-}
+} */
 
 button.hidden {
     visibility: hidden;
@@ -542,9 +636,11 @@ button.hidden {
 .filter-container input {
     color: var(--dark-font);
     font-weight: bold;
+    transition: .1s;
 }
 .filter-container i {
     color: var(--dark-font);
+    transition: .1s;
 }
 
 
@@ -658,7 +754,7 @@ button.hidden {
     padding: 20px 10px 20px 10px;
     width: min(70vw, 300px) !important;
     background-color: var(--main);
-    color: #fff;
+    color: var(--dark-bg);
     border: none;
     font-size: 25px;
 
@@ -677,13 +773,21 @@ button.hidden {
 }
 
 a.a-btn {
-    font-size: 25px;
+    font-size: 20px;
     font-family: var(--main-font);
+    background-color: var(--dark-font);
+    font-weight: bold;
+    color: var(--dark-bg);
+    padding: 13px 30px 13px 30px;
+    border-radius: 999999px;
+}
+a.a-btn i {
+    color: var(--dark-bg);
 }
 
 input[type='submit'].big-btn {
     background-color: var(--main);
-    font-size: 20px;
+    font-size: 22px;
     text-align: center;
     font-weight: 900;
     border-radius: 9999px;

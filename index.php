@@ -45,8 +45,6 @@
 
             unionArraysByCommonIndex($products, $images, 'img_path', 'product_id', 'path');
 
-            $categories = array();
-
             //============================================== RETRIEVING CATEGORIES
             $query = "SELECT * FROM category";
             if ( $response = @$connection->query($query) ) {
@@ -79,6 +77,7 @@
     <link rel="stylesheet" href="css/main.css" >
     <link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/popup.css" >
+    <link rel="stylesheet" href="css/dropdown.css" >
     <script src="https://kit.fontawesome.com/252efe8be7.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -94,55 +93,56 @@
 
     <div class="menu-container hidden">
         <form action="#" method="POST" id="category-from">
-            <div class="menu-header">
-                <label for="kategoria" class="clean-label"><p class="menu-bold">Kategoria:</p></label>
-                <div class="dropdown-container">
-                    <input type="checkbox" class="dropdown-checkbox" autocomplete="off" id="kategoria" <?php if ( isset($_POST['category']) ) echo "checked";?>>
-                    <img src="gfx/dropdown.svg" class="dropdown-icon">
+            <section class="dropdowns-container">
+                <div class="xdropdown-container">
+                    <div class="xdropdown-header" data-toggle="<?php echo (isset($_POST['category']))?"on":"off"?>">
+                        <p class="menu-bold">Kategoria: </p>
+                        <div class="dropdown-icon-container">
+                            <img src="gfx/dropdown.svg" class="dropdown-icon">
+                        </div>
+                    </div>
+                    <div class="xdropdown-content">
+                        <?php
+
+                            //======================================== PROCEDURAL CATEGORY MENU GENERATING WITH CATEGORIES IN DATABASE
+                            foreach ( $categories as $category ) {
+                                echo "<label>
+                                    <div class='custom-checkbox'>
+                                        <input type='checkbox' name='category[]' value='".$category['category']."'";
+                                            if(isset($_POST['category']) && in_array($category['category'],$_POST['category'])) echo "checked";
+                                        echo ">
+                                        <div><i class='fa-solid fa-check fa-l'></i></div>
+                                    </div>";
+                                echo $category['category']."</label>";
+                            }
+                            //=================================================
+
+                            #TO DO:
+                            # - display number of items currently in cart
+
+                        ?>
+                    </div>
                 </div>
-            </div>
-            <div class="menu-options dropdown-content <?php if ( !isset($_POST['category']) ) echo "hidden";?>">
 
-                <?php
-
-                    //======================================== PROCEDURAL CATEGORY MENU GENERATING WITH CATEGORIES IN DATABASE
-                    foreach ( $categories as $category ) {
-                        echo "<label>
-                            <div class='custom-checkbox'>
-                                <input type='checkbox' name='category[]' value='".$category['category']."'";
-                                    if(isset($_POST['category']) && in_array($category['category'],$_POST['category'])) echo "checked";
-                                echo ">
-                                <div><i class='fa-solid fa-check fa-l'></i></div>
-                            </div>";
-                        echo $category['category']."</label>";
-                    }
-                    //=================================================
-
-                    #TO DO:
-                    # - display number of items currently in cart
-
-                ?>
-
-            </div>
-
-            <div class="menu-header">
-                <label for="sortuj" class="clean-label"><p class="menu-bold">Sortuj:</p></label>
-                <div class="dropdown-container">
-                    <input type="checkbox" class="dropdown-checkbox" autocomplete="off" id="sortuj" <?php if ( isset($_POST['priceSort']) ) echo "checked";?>>
-                    <img src="gfx/dropdown.svg" class="dropdown-icon">
+                <div class="xdropdown-container">
+                    <div class="xdropdown-header" data-toggle="<?php echo (isset($_POST['priceSort']))?"on":"off"?>">
+                        <p class="menu-bold">Sortuj: </p>
+                        <div class="dropdown-icon-container">
+                            <img src="gfx/dropdown.svg" class="dropdown-icon">
+                        </div>
+                    </div>
+                    <div class="xdropdown-content">
+                        <label><div class='custom-radio'>
+                            <input type='radio'  name="priceSort" value="ASC" <?php if(isset($_POST['priceSort']) && $_POST['priceSort'] == "ASC") echo "checked";?>>
+                            <div></div>
+                        </div> Cena rosnąco</label>
+                        <label><div class='custom-radio'>
+                            <input type='radio'  name="priceSort" value="DESC" <?php if(isset($_POST['priceSort']) && $_POST['priceSort'] == "DESC") echo "checked";?>>
+                            <div></div>
+                        </div> Cena malejąco</label>
+                    </div>
                 </div>
-            </div>
-            <div class="menu-options dropdown-content <?php if ( !isset($_POST['priceSort']) ) echo "hidden";?>">
-
-                <label><div class='custom-radio'>
-                    <input type='radio'  name="priceSort" value="ASC" <?php if(isset($_POST['priceSort']) && $_POST['priceSort'] == "ASC") echo "checked";?>>
-                    <div></div>
-                </div> Cena rosnąco</label>
-                <label><div class='custom-radio'>
-                    <input type='radio'  name="priceSort" value="DESC" <?php if(isset($_POST['priceSort']) && $_POST['priceSort'] == "DESC") echo "checked";?>>
-                    <div></div>
-                </div> Cena malejąco</label>
-            </div>
+            </section>
 
             <div class="filter-container">
                 <i class="fa-solid fa-filter fa-xl"></i>
@@ -199,4 +199,5 @@
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
 <script src="scripts/addtocart.js"></script>
+<script src="scripts/dropdown.js"></script>
 </html>
