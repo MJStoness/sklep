@@ -169,6 +169,7 @@
     </header>
 
     <main>
+        <div class="products-container">
         <?php
 
             foreach ( $products as $product ) {
@@ -191,6 +192,7 @@
             }
 
         ?>
+        </div>
     
     </main>
     

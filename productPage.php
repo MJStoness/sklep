@@ -89,7 +89,7 @@
 
         <?php
             if ( isset($_SESSION['admin']) && $_SESSION['admin'] == true ) {
-                echo "<a href='A_editProduct' class='editProduct admin'>EDIT THIS PRODUCT</a>";
+                echo "<a href='A_editProduct?id=".$displayedProduct['product_id']."' class='editProduct admin'>EDIT THIS PRODUCT</a>";
             }
 
             echo

@@ -32,7 +32,7 @@ form {
 .form-cell {
     margin-top: 20px;
 }
-.form-cell input, .form-cell select, .form-cell .custom-number-input, .form-cell textarea {
+.form-cell input, .form-cell .custom-select, .form-cell .custom-number-input, .form-cell textarea {
     margin-top: 10px;
 }
 .form-cell input[type="number"] {
@@ -69,4 +69,105 @@ form {
     align-items: center;
     margin-top: 40px;
     gap: 20px;
+}
+
+.product-edit-entrie {
+    background-color: var(--light-bg);
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    min-height: 120px;
+}
+.product-edit-entrie a {
+    width: 80%;
+}
+
+.product-edti-details-container img {
+    height: 70px;
+    width: 70px;
+
+    object-fit: cover;
+
+    margin-right: 10px;
+    border-radius: 15px;
+}
+.product-edti-details-container {
+    max-width: 100%;
+}
+.product-edti-details-container h2 {
+    font-weight: bold;
+    color: #fff;
+    font-size: 25px !important;
+    text-align: left;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    max-width: 90%;
+}
+.product-edti-details-container span {
+    display: flex;
+    margin-top: 15px;
+    margin-top: 0;
+    width: 100%;
+}
+.product-edti-details-container span span {
+    flex-direction: column;
+    margin-top: 0;
+}
+.product-edti-details-container p.price {
+    font-size: 15px;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--dark-font);
+}
+
+.product-edti-details-container p.desc {
+    font-size: 15px;
+    font-weight: bold;
+    font-style: italic;
+    color: var(--dark-font);
+    margin-top: 15px;
+
+    overflow: hidden;
+
+    --line-height: 1.4em;
+    --max-lines: 4;
+
+    line-height: var(--line-height);
+    max-height: calc(var(--max-lines) * var(--line-height));
+
+    position: relative;
+}
+.product-edti-details-container p.desc.cutoff::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent, var(--light-bg));
+}
+
+.product-edti-controlls-container {
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.product-edti-controlls-container .custom-checkbox {
+    --custom-checkbox-size: 20px;
+}
+.product-edti-controlls-container i {
+    color: var(--dark-font);
+}
+.product-edti-controlls-container i:hover {
+    cursor: pointer;
+}
+.product-edti-controlls-container span {
+    margin-top: 5px;
 }

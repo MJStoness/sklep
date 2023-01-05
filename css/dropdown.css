@@ -11,7 +11,7 @@
 
 .xdropdown-content {
     padding-left: 10px;
-    transition: .1s ease-out;
+    transition: .15s ease-out;
     transform-origin: top;
 }
 .xdropdown-content label {
@@ -27,7 +27,7 @@
     border-radius: 15px;
     overflow: hidden;
     height: fit-content;
-    transition: .1s ease-out;
+    transition: .15s ease-out;
     margin-top: 20px;
     width: calc(100% - 30px);
 }
