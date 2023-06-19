@@ -71,6 +71,10 @@ form {
     gap: 20px;
 }
 
+.product-edit-entries {
+    transition: .2s ease-out;
+}
+
 .product-edit-entrie {
     background-color: var(--light-bg);
     display: flex;
@@ -153,21 +157,145 @@ form {
     background: linear-gradient(to bottom, transparent, var(--light-bg));
 }
 
-.product-edti-controlls-container {
+.product-edti-controlls-container, .category-edti-controlls-container {
     padding: 2px;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.product-edti-controlls-container .custom-checkbox {
+.product-edti-controlls-container .custom-checkbox, .category-edti-controlls-container .custom-checkbox {
     --custom-checkbox-size: 20px;
 }
-.product-edti-controlls-container i {
+.product-edti-controlls-container i, .category-edti-controlls-container i {
     color: var(--dark-font);
 }
-.product-edti-controlls-container i:hover {
+.product-edti-controlls-container i:hover, .category-edti-controlls-container i:hover {
     cursor: pointer;
 }
-.product-edti-controlls-container span {
+.product-edti-controlls-container span, .category-edti-controlls-container span {
     margin-top: 5px;
+}
+.product-edti-controlls-container span i, .category-edti-controlls-container span i {
+    color: var(--error);
+}
+
+#delete-selected-container {
+    position: absolute;
+    right: calc(5vw - 10px);
+    transition: .2s ease-out;
+    opacity: 0;
+    pointer-events: none;
+}
+#product-count {
+    color: var(--dark-bg);
+    font-size: 25px;
+}
+
+.delete-photo {
+    background-color: var(--light-bg);
+    padding: 10px 0 10px 10px;
+    border-radius: 20px;
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 243px;
+    margin-top: 10px;
+    transition: .1s;
+}
+.delete-photo .photo-container img {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.delete-photo .photo-container {
+    position: relative;
+}
+.delete-photo .photo-container i {
+    position: absolute;
+    color: var(--error);
+    top: -6px;
+    right: -6px;
+}
+
+.photo-container:hover {
+    cursor: pointer;
+}
+
+.alert img {
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.category-edit-entrie {
+    background-color: var(--light-bg);
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    position: relative;
+    min-height: 69px;
+}
+.category-edit-entrie h5 {
+    font-weight: bold;
+    color: #fff;
+    font-size: 25px !important;
+    text-align: left;
+    
+}
+.category-edit-entrie h5 input {
+    width: 80%;
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 5px;
+}
+.category-edit-entrie ul {
+    margin-left: 20px;
+    margin-top: 10px;
+    /* list-style: url('https://www.svgrepo.com/show/432426/chevron-right.svg'); */
+    list-style: " - ";
+}
+.category-edit-entrie ul li, .category-edit-entrie ul li a {
+    color: var(--light-font);
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.category-edti-controlls-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#add-category, #cancel-category {
+    font-size: 50px;
+}
+#cancel-category {
+    display: none;
+}
+
+#new-category {
+    background-color: var(--light-bg);
+    width: 90vw;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    position: relative;
+    visibility: hidden;
+}
+
+.new-category-settings {
+    width: 90vw;
+    display: flex;
+    justify-content: left;
+    gap: 20px;
 }

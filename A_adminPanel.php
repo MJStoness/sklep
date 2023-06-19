@@ -32,7 +32,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sklep - Logowanie</title>
+    <title>Sklep - Administrator</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/display.css" >
     <link rel="stylesheet" href="css/secondary.css" >
@@ -65,7 +65,7 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh</h1>
+        <h1 class="scroll-minimize"><img src='gfx/logo.png' class='logo'></h1>
     </header>
 
     <main>
@@ -74,8 +74,8 @@
 
         <section class="admin-opt-container">
             <a href="A_addProduct" class="admin-opt"><i class="fa-solid fa-plus"></i>Dodaj produkt</a>
-            <a href="A_editProducts" class="admin-opt"><i class="fa-solid fa-pen-to-square"></i>Edytuj produkty</a>
-            <a href="A_manageCategories" class="admin-opt"><i class="fa-solid fa-list"></i>Zarządzaj kategoriami</a>   
+            <a href="A_editProducts" class="admin-opt"><i class="fa-solid fa-pen-to-square"></i>Zarządzaj produktami</a>
+            <a href="A_editCategories" class="admin-opt"><i class="fa-solid fa-list"></i>Zarządzaj kategoriami</a>   
         </section>
         <?php
 

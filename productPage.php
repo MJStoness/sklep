@@ -82,7 +82,7 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh</h1>
+        <h1 class="scroll-minimize"><img src='gfx/logo.png' class='logo'></h1>
     </header>
 
     <main>
@@ -96,6 +96,15 @@
                 "<section class='display-container'>
                     <p class='display-category'>".$displayedProduct['category']."</p>
                     <img src='".@$displayedImages[0]['path']."' class='main-img'>
+                    <div class='imgs-container'>
+                    ";
+
+                    foreach ($displayedImages as $displayedImage ) {
+                        echo "<img src='".@$displayedImage['path']."'>";
+                    }
+
+                    echo "
+                    </div>
                     <section class='display-header'>
                         <div class='display-title-container'>
                             <h5 class='display-title'>".$displayedProduct['name']."</h5>
@@ -118,4 +127,5 @@
 <script src="scripts/scroll.js"></script>
 <script src="scripts/menu.js"></script>
 <script src="scripts/addtocart.js"></script>
+<script src="scripts/gallery.js"></script>
 </html>

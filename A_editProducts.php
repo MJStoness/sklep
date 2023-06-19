@@ -69,7 +69,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sklep - Logowanie</title>
+    <title>Sklep - Zarządzanie Produktami</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/display.css" >
     <link rel="stylesheet" href="css/secondary.css" >
@@ -113,10 +113,15 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh</h1>
+        <h1 class="scroll-minimize"><img src='gfx/logo.png' class='logo'></h1>
     </header>
 
     <main>
+        <div id="delete-selected-container">
+            <button class="big-btn">
+                Usuń <span id="product-count"></span> produktów
+            </button>
+        </div>
 
         <div class='product-edit-entries'>
             <?php

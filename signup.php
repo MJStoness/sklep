@@ -110,7 +110,7 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh Shop</h1>
+        <h1 class="scroll-minimize"><img src='gfx/logo.png' class='logo'></h1>
     </header>
 
     <main>

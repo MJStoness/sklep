@@ -82,11 +82,11 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80vw;
+    width: min(80vw, 500px);
     padding: 15px 15px 25px 15px;
     border-radius: 20px;
     position: fixed;
-    top: 200px;
+    top: 150px;
     z-index: 9999999;
     opacity: 0;
     pointer-events: none;
@@ -115,6 +115,9 @@ textarea {
 .alert i {
     font-size: 30px;
     margin-left: auto;
+}
+.alert i:hover {
+    cursor: pointer;
 }
 
 /* ================================== CUSTOM NUMBER INPUT */
@@ -317,6 +320,12 @@ main {
     align-items: center;
     flex-direction: column;
     margin-top: 130px;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    transition: .2s;
 }
 
 .products-container {
@@ -567,6 +576,11 @@ header.small {
     transition: .2s;
 }
 
+h1.small .logo {
+    height: 40px;
+    transition: .2s;
+}
+
 /*========================================= MENU */
 .menu-container {
     display: flex;
@@ -744,7 +758,7 @@ button.hidden {
 
     border-radius: 20px;
 
-    object-fit: cover;
+    object-fit: contain;
     box-shadow: 0px 0px 10px 1px #0E0D11;
     margin-bottom: 5px;
 }

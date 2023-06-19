@@ -13,7 +13,7 @@ NUMBER_INPUTS.forEach( numberInput => {
     let intervalDown;
 
     const stepUp = () => {
-        if ( parseInt(input.value) - parseInt(step) <= max ) {
+        if ( parseInt(input.value) + parseInt(step) <= max ) {
             input.value = parseInt(input.value) + parseInt(step);
         }
     }

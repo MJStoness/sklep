@@ -1,9 +1,6 @@
 - panel uzytkownika (zmiana hasła)
-- panel admina
 - wyizolować validacje formularzy do funkcji
 - usprawnić walidacje wykonania zapytania
-- płatności
 - ads B)
-- cobine images with products in SQL
-- photo gallery
 - better validation in A_addProduct.php
+- reset form after refresh in A_addProduct.php

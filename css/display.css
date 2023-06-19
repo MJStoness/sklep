@@ -3,11 +3,34 @@ main {
 }
 
 .main-img {
-    height: 80vw;
-    width: 80vw;
-    object-fit: cover;
+    height: min(80vw, 500px);
+    width: min(80vw, 500px);
+    object-fit: contain;
     border-radius: 20px;
     margin-bottom: 10px;
+}
+
+.imgs-container {
+    --max-photos-row: 4;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: min(80vw, 500px);
+    flex-shrink: 0 0;
+    margin-bottom: 15px;
+}
+.imgs-container img {
+    width: min( calc( 80vw / var(--max-photos-row) - 10px ), calc( 500px / var(--max-photos-row) - 10px ) );
+    height: min( calc( 80vw / var(--max-photos-row) - 10px ), calc( 500px / var(--max-photos-row) - 10px ) );
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: .2s;
+}
+.imgs-container img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: .2s;
 }
 
 .display-category {

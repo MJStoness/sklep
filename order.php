@@ -31,9 +31,9 @@
 
                 $number_reg = "/^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$/";
                 $postCode_reg = "/^[0-9]{2}-[0-9]{3}$/";
-                $address_reg = "/^(?:[A-Za-z ,.-ĄĘĆŻŹŁąęćżźł]+)(?:[0-9]+)$/";
-                $surname_reg = "/^[A-Za-z-ĄĘĆŻŹŁąęćżźł ]*$/";
-                $name_reg = "/^[A-Za-zĄĘĆŻŹŁąęćżźł]*$/";
+                $address_reg = "/^(?:[A-Za-z ,.-ĄĘĆŻŹŁąęćżźłó]+)(?:[0-9]+)$/";
+                $surname_reg = "/^[A-Za-z-ĄĘĆŻŹŁąęćżźłó ]*$/";
+                $name_reg = "/^[A-Za-zĄĘĆŻŹŁąęćżźłó]*$/";
                 
                 if ( empty($_POST['name']) ) $nameError = EMPTY_FIELD_ERROR;
                 else if ( !preg_match($name_reg, $_POST['name']) ) $nameError = 'Imie może składać się tylko z liter!';
@@ -56,42 +56,36 @@
                 # CHANGE THIS SHIIIT ASAP AGILE \/ \/ \/ \/ \/ !
                 if ( !isset($nameError)&&!isset($surnameError)&&!isset($emailError)&&!isset($emailError)&&!isset($addressError)&&!isset($postCodeError)&&!isset($contactNumberError) )  {
 
-                    // ================================================================================================ ORDER CREATION
+                    // ======================================================= ORDER CREATION
                     $identifier = generateIdentifier($connection, 'order_overview');
-                    echo $identifier;
                     if ( isset($_SESSION['loggedin_id']) ) {
-                        $query = "INSERT INTO order_overview (`user_id`, `identifier` `email`, a`ddress`, `name`, `surname`, `contact_number`) VALUES (
-                            ".$_SESSION['loggedin_id'].",
-                            '".$identifier."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['address'], ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities(ucfirst($_POST['name']), ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities(ucwords($_POST['surname']), ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['contactNumber'], ENT_QUOTES, "UTF-8"))."')";
-
-                        if ( !$connection->query($query) ) {
-                            throw new Exception();
-                        }
+                        $user_id = $_SESSION['loggedin_id'];
                     } else {
-                        $query = "INSERT INTO order_overview (`identifier`, `email`, `address`, `name`, `surname`, `contact_number`) VALUES (
-                            '".$identifier."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['address'], ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities(ucfirst($_POST['name']), ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities(ucwords($_POST['surname']), ENT_QUOTES, "UTF-8"))."', 
-                            '".mysqli_real_escape_string($connection, htmlentities($_POST['contactNumber'], ENT_QUOTES, "UTF-8"))."')";
-
-                        if ( !$connection->query($query) ) {
-                            throw new Exception();
-                        }
+                        $user_id = 'NULL';
                     }
-                    // ===================================================================================================================
+
+                    $query = "INSERT INTO order_overview (`user_id`, `identifier`, `email`, `address`, `name`, `surname`, `contact_number`) VALUES (
+                        ".$user_id.",
+                        '".$identifier."', 
+                        '".mysqli_real_escape_string($connection, htmlentities($_POST['email'], ENT_QUOTES, "UTF-8"))."', 
+                        '".mysqli_real_escape_string($connection, htmlentities($_POST['address'], ENT_QUOTES, "UTF-8"))."', 
+                        '".mysqli_real_escape_string($connection, htmlentities(ucfirst($_POST['name']), ENT_QUOTES, "UTF-8"))."', 
+                        '".mysqli_real_escape_string($connection, htmlentities(ucwords($_POST['surname']), ENT_QUOTES, "UTF-8"))."', 
+                        '".mysqli_real_escape_string($connection, htmlentities($_POST['contactNumber'], ENT_QUOTES, "UTF-8"))."')";
+
+                    echo $query;
+                    if ( !$connection->query($query) ) {
+                        throw new Exception();
+                    }
+                    
+
+                    
+                    // =======================================================================================
                     
                     $query = "SELECT order_id FROM order_overview WHERE identifier='".$identifier."'";
                     if ( $response = $connection->query($query) ) {
                         $orderId = $response->fetch_assoc()['order_id'];
                     }
-                    echo $orderId;
 
                     foreach ( $orderEntries as $orderEntry ) {
                         $query = "INSERT INTO order_entry (order_id, product_id, quantity) VALUE (".$orderId.", ".$orderEntry['product_id'].", ".$orderEntry['quantity'].")";
@@ -100,13 +94,14 @@
                         }
                     }
 
-                    $query = "DELETE FROM cart_entry WHERE cart_id=".$_GET['cart_id'];
+                    $query = "DELETE FROM cart_entry WHERE cart_id=".$_POST['cart_id'];
                     if ( !$connection->query($query) ) {
                         throw new Exception();
                     }
                     
                     $connection->close();
-                    header("Location: orderFinal?order_id=".$orderId);
+                    header("Location: payment?id=".$identifier);
+
                 }
                 
             }
@@ -158,7 +153,7 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh Shop</h1>
+        <h1 class="scroll-minimize"><img src='gfx/logo.png' class='logo'></h1>
     </header>
 
     <main>
@@ -167,7 +162,7 @@
 
         <section class='standard-form-container'>
             <form method='POST' action=''>
-                <!-- ======================================================================================================== PERSONAL DATA -->
+                <!-- ===================================================================== PERSONAL DATA -->
                 <label class='sans <?php if ( isset($nameError) ) echo 'error'; ?>' for='form-name' data-highlight='yes'>Imie: </label>
                 <input type='text' class='sans <?php if ( isset($nameError) ) echo 'error'; ?>' id='form-name' data-highlight='yes' name='name'
                     <?php
@@ -206,9 +201,9 @@
                         else echo '&nbsp;'
                     ?>
                 </p>
-                <!-- ===================================================================================================================== -->
+                <!-- ======================================================================================= -->
                 <hr class='form-separator'>
-                <!-- ======================================================================================================== ADDRESS DATA -->
+                <!-- ======================================================================= ADDRESS DATA -->
                 <label class='sans <?php if ( isset($addressError) ) echo 'error'; ?>' for='form-address' data-highlight='yes'>Adres: </label>
                 <input type='text' class='sans <?php if ( isset($addressError) ) echo 'error'; ?>' id='form-address' data-highlight='yes' name='address'
                     <?php
@@ -234,9 +229,9 @@
                         else echo '&nbsp;'
                     ?>
                 </p>
-                <!-- ===================================================================================================================== -->
+                <!-- ===================================================================================== -->
                 <hr class='form-separator'>
-                <!-- ======================================================================================================== CONTACT DATA -->
+                <!-- ======================================================================== CONTACT DATA -->
                 <label class='sans <?php if ( isset($contactNumberError) ) echo 'error'; ?>' for='form-contactNumber' data-highlight='yes'>Numer kontaktowy: </label>
                 <input type='text' class='sans <?php if ( isset($contactNumberError) ) echo 'error'; ?>' id='form-contactNumber' data-highlight='yes' name='contactNumber'
                     <?php
@@ -249,35 +244,27 @@
                         else echo '&nbsp;'
                     ?>
                 </p>
-                <!-- ===================================================================================================================== -->
+                <!-- ========================================================================================== -->
 
                 <input type='submit' value='ZAMIAWIAM I PŁACĘ' class='big-btn' name='submit'>
                 <input type='hidden' name='token' value='true'>
+                <input type='hidden' name='cart_id' value='<?php echo $_GET['cart_id'] ?>'>
             </form>
-            <div class="menu-header">
-                    <label for="kategoria" class="clean-label"><p class="menu-bold small">Pokaż Zamówienie:</p></label>
-                    <div class="dropdown-container">
-                        <input type="checkbox" class="dropdown-checkbox" autocomplete="off" id="kategoria">
-                        <img src="gfx/dropdown.svg" class="dropdown-icon small">
-                    </div>
-                </div>
-                <div class="menu-options dropdown-content hidden">
-                    <?php
-                        echo "<a href='cart'>";
-                        foreach ( $orderEntries as $orderEntry ) {
-                            echo 
-                                "<section class='order-entry'>
-                                    <p class='order-entry-quantity'>".$orderEntry['quantity']."</p><h5>".$orderEntry['name']."</h5><p class='order-entry-price'>".number_format( (floatval($orderEntry['price'])*intval($orderEntry['quantity'])), 2, '.', '' )." zł</p>
-                                </section>";
-                        }
+            
+            <?php
+                echo "<a href='cart' class='cart-summary'>";
+                foreach ( $orderEntries as $orderEntry ) {
+                    echo 
+                        "<section class='order-entry'>
+                            <p class='order-entry-quantity'>".$orderEntry['quantity']."</p><h5>".$orderEntry['name']."</h5><p class='order-entry-price'>".number_format( (floatval($orderEntry['price'])*intval($orderEntry['quantity'])), 2, '.', '' )." zł</p>
+                        </section>";
+                }
 
-                        echo 
-                            "<section class='order-entry-summary'>
-                                <p>Suma: ".cartSum($orderEntries)." zł</p>
-                            </section></a>"
-                    ?>
-                    
-                </div>
+                echo 
+                    "<section class='order-entry-summary'>
+                        <p>Suma: ".cartSum($orderEntries)." zł</p>
+                    </section></a>"
+            ?>
 
         </section>
     

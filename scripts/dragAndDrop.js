@@ -5,7 +5,7 @@ const FILE_INPUT = document.querySelector("#addPhoto");
 
 const FILE_PREVIEW = document.querySelector(".file-preview");
 
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/wepb"]
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"]
 
 const active = () => {
     DROP_SQUARE.classList.add("highlighted");

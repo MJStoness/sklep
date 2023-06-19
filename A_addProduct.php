@@ -11,7 +11,7 @@
     }
 
     define("FAILURE_TO_ADD_PRODUCT_POPUP", "onload = \"pop('Nie udało się dodać produktu!', 'red', '1.5s')\"");
-    define("SUCCESS_TO_ADD_PRODUCT_POPUP", "onload = \"pop('Produkt dodano poprawnie!', 'green', '1.5s')\"");
+    define("SUCCESS_TO_ADD_PRODUCT_POPUP", "onload = \"pop('Produkt dodano pomyślnie!', 'green', '1.5s')\"");
 
     try {
         $connection = new mysqli($servername,$username,$passwd,$dbname);
@@ -50,7 +50,7 @@
                         
                         $price = ( $_POST['productPrice2'] < 10 )?floatval($_POST['productPrice1'].".0".$_POST['productPrice2']):floatval($_POST['productPrice1'].".".$_POST['productPrice2']);
 
-                        $query = "INSERT INTO `product` (`product_id`, `category_id`, `price`, `name`, `description`) VALUES ($newProductId, $categoryId, $price, '".$_POST['productTitle']."', '".$_POST['productDescription']."')";
+                        $query = "INSERT INTO `product` (`product_id`, `category_id`, `price`, `name`, `description`) VALUES ($newProductId, $categoryId, $price, '".htmlentities($_POST['productTitle'])."', '".htmlentities($_POST['productDescription'])."')";
                         if ( $response = $connection->query($query) ) {
                             $imagesDir = "images";
                             foreach ($_FILES['images']['error'] as $key => $error) {
@@ -90,7 +90,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sklep - Logowanie</title>
+    <title>Sklep - Dodawanie Produktu</title>
     <link rel="stylesheet" href="css/main.css" ><link rel="stylesheet" href="css/hamburger.css" >
     <link rel="stylesheet" href="css/display.css" >
     <link rel="stylesheet" href="css/secondary.css" >
@@ -127,7 +127,7 @@
     </div>
 
     <header class="scroll-minimize">
-        <h1 class="scroll-minimize">Waltuh</h1>
+        <h1 class="scroll-minimize"><img src='gfx/logo.png' class='logo'></h1>
     </header>
 
     <main>
@@ -141,7 +141,7 @@
                     </label>
                     <input type="file" name="images[]" id="addPhoto" multiple>
                 </div>
-                <p class="add-photo-title">Dodaj<br>zdjecie</p>
+                <p class="add-photo-title">Dodaj<br>zdjecia</p>
             </div>
             <div class="file-preview"></div>
 
@@ -183,7 +183,7 @@
                     </div>
                 </div>
             </div>
-            <a href="A_manageCategories"><i class="fa-solid fa-plus"></i> Dodaj kategorię</a>
+            <a href="A_editCategories"><i class="fa-solid fa-plus"></i> Dodaj kategorię</a>
 
             <div class="form-cell" style="margin-top: 50px;">
                 <label for="productTitle">
